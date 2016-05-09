@@ -1,0 +1,7 @@
+$provision_config = {
+	# root password for the mysql root user in the vagrant box
+    "mysql_root_password" => "root",
+    "php_timezone" => 'Australia/Melbourne',
+    # location on the shared files on the vagrant box - if you change this you will need to update the virtual host on the VM
+    "location"  => "/var/www/mybookhours"
+}

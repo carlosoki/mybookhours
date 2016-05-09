@@ -1,0 +1,55 @@
+security:
+    encoders:
+        FOS\UserBundle\Model\UserInterface: bcrypt
+
+    role_hierarchy:
+        ROLE_PROFILE_WRITE:             ROLE_USER
+        ROLE_OFFER_WRITE:               ROLE_PROFILE_WRITE
+
+        ROLE_USER_WRITE:                ROLE_USER
+
+        ROLE_COMPANY_WRITE:             ROLE_USER
+
+        ROLE_OPP_PUBLISH:               ROLE_OPP_WRITE
+
+        ROLE_ADMIN:                     [ROLE_USER_WRITE, ROLE_COMPANY_WRITE]
+
+        ROLE_SUPER_ADMIN:               [ROLE_USER_WRITE, ROLE_COMPANY_WRITE, ROLE_PROFILE_WRITE, ROLE_OPP_PUBLISH, ROLE_OFFER_WRITE]
+
+    providers:
+        fos_userbundle:
+            id: fos_user.user_provider.username_email
+
+    firewalls:
+#        oauth_token:
+#            pattern:    ^/oauth/v2/token
+#            security:   false
+
+        main:
+            pattern: ^/
+#            fos_oauth:  false
+            anonymous: true
+            stateless: true
+#            form_login:
+#                provider: fos_userbundle
+#                check_path: /oauth/auth_login_check
+#                login_path: /oauth/v2/token
+
+    access_control:
+        - { path: ^/users, roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/user, roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/companies, roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/company, roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/legal_entities, roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/legal_entity, roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/offices, roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/office, roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/profiles, roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/profile, roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/invoices, roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/notifications, roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/notification, roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/file, roles: IS_AUTHENTICATED_FULLY }
+
+    access_decision_manager:
+        strategy: unanimous

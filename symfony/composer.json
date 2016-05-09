@@ -1,0 +1,80 @@
+{
+    "name": "gimler/symfony-rest-edition",
+    "license": "MIT",
+    "type": "project",
+    "description": "The \"Symfony REST Edition\" distribution",
+    "autoload": {
+        "psr-0": { "": "src/" }
+    },
+    "repositories": [{
+        "type": "vcs",
+        "url": "https://github.com/ONEOKI/WebApiExtension"
+    }],
+    "require": {
+        "php": ">=5.3.3",
+        "symfony/symfony": "~2.3",
+        "symfony/icu": "1.0.*",
+        "doctrine/orm": "~2.2,>=2.2.3",
+        "doctrine/doctrine-bundle": "~1.5",
+        "twig/extensions": "1.0.*",
+        "symfony/assetic-bundle": "2.3.*",
+        "symfony/swiftmailer-bundle": "2.3.*",
+        "symfony/monolog-bundle": "~2.3",
+        "sensio/distribution-bundle": "2.3.*",
+        "sensio/framework-extra-bundle": "2.3.*",
+        "sensio/generator-bundle": "2.3.*",
+        "jms/serializer-bundle": "0.13.*@dev",
+        "friendsofsymfony/rest-bundle": "^1.7",
+        "nelmio/api-doc-bundle": "~2.4",
+        "friendsofsymfony/http-cache-bundle": "~1.0",
+        "hautelook/templated-uri-bundle": "~2.0",
+        "willdurand/rest-extra-bundle": "~1.0",
+        "stof/doctrine-extensions-bundle": "1.1.0",
+        "nelmio/cors-bundle": "1.4.0",
+        "incenteev/composer-parameter-handler": "~2.0",
+        "oneup/flysystem-bundle": "@stable",
+        "league/flysystem-aws-s3-v3": "^1.0",
+        "imagine/imagine": "^0.6.3",
+        "sendgrid/sendgrid": "^4.0",
+        "knplabs/knp-snappy-bundle": "dev-master",
+        "doctrine/doctrine-migrations-bundle": "^1.0",
+        "h4cc/wkhtmltopdf-amd64": "0.12.2.1"
+    },
+    "conflict": {
+        "symfony/routing": "2.4.1"
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
+        ],
+        "post-update-cmd": [
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
+        ]
+    },
+    "config": {
+        "bin-dir": "bin"
+    },
+    "minimum-stability": "stable",
+    "extra": {
+        "symfony-app-dir": "app",
+        "symfony-web-dir": "web",
+        "branch-alias": {
+            "dev-master": "2.3-dev"
+        },
+        "incenteev-parameters":{
+            "file": "app/config/parameters.yml"
+        }
+    },
+    "require-dev": {
+        "behat/behat": "3.1.*@dev",
+        "guzzle/plugin-mock": "*",
+        "phpspec/phpspec": "~2.0",
+        "behat/symfony2-extension": "^2.0",
+        "behat/web-api-extension": "1.0.*@dev"
+    }
+}

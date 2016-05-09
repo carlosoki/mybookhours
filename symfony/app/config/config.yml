@@ -1,0 +1,152 @@
+imports:
+    - { resource: parameters.yml }
+    - { resource: security.yml }
+
+framework:
+    #esi:             ~
+    translator:      { fallback: %locale% }
+    secret:          %secret%
+    router:
+        resource: "%kernel.root_dir%/config/routing.yml"
+        strict_requirements: %kernel.debug%
+    form:            ~
+    csrf_protection: false
+    validation:      { enable_annotations: true }
+    templating:
+        engines: ['twig']
+        #assets_version: SomeVersionScheme
+    default_locale:  "%locale%"
+    trusted_proxies: ~
+    session:         false
+    fragments:       ~
+
+# Twig Configuration
+twig:
+    debug:            %kernel.debug%
+    strict_variables: %kernel.debug%
+    exception_controller: 'FOS\RestBundle\Controller\ExceptionController::showAction'
+
+# Assetic Configuration
+assetic:
+    debug:          %kernel.debug%
+    use_controller: false
+    bundles:        [ PersuitApiBundle ]
+    filters:
+        cssrewrite: ~
+
+# Doctrine Configuration
+doctrine:
+    dbal:
+        driver:   %database_driver%
+        host:     %database_host%
+        port:     %database_port%
+        dbname:   %database_name%
+        user:     %database_user%
+        password: %database_password%
+        charset:  UTF8
+        server_version: 5.5.44
+        mapping_types:
+          enum: string
+        # if using pdo_sqlite as your database driver, add the path in parameters.yml
+        # e.g. database_path: %kernel.root_dir%/data/data.db3
+        # path:     %database_path%
+
+    orm:
+        auto_generate_proxy_classes: %kernel.debug%
+        auto_mapping: true
+
+sensio_framework_extra:
+    view: { annotations: false }
+
+fos_rest:
+    routing_loader:
+        default_format: json
+    disable_csrf_role: ROLE_API
+    param_fetcher_listener: true
+    view:
+        mime_types:
+            json: ['application/json', 'application/json;version=1.0', 'application/json;version=1.1']
+        view_response_listener: 'force'
+        formats:
+            xml:  false
+            json: true
+        templating_formats:
+            html: false
+        exception_wrapper_handler: 'Persuit\Bundle\Api\Service\ExceptionWrapperHandler'
+    format_listener:
+        rules:
+            - { path: ^/, priorities: [ json ], fallback_format: json, prefer_extension: true }
+        media_type:
+            version_regex: '/(v|version)=(?P<version>[0-9\.]+)/'
+    exception:
+        codes:
+            'Symfony\Component\Routing\Exception\ResourceNotFoundException': 404
+            'Doctrine\ORM\OptimisticLockException': HTTP_CONFLICT
+        messages:
+            'Symfony\Component\Routing\Exception\ResourceNotFoundException': true
+    allowed_methods_listener: true
+    access_denied_listener:
+        json: true
+    body_listener: true
+
+fos_http_cache:
+    cache_control:
+        rules:
+            # the controls section values are used in a call to Response::setCache();
+            -
+                match:
+                    path: ^/notes
+                    methods: [GET, HEAD]
+                headers:
+                    cache_control: { public: true, max_age: 15, s_maxage: 30 }
+                    last_modified: "-1 hour"
+                    vary: [Accept-Encoding, Accept-Language]
+
+stof_doctrine_extensions:
+    default_locale: en_US
+    orm:
+        default:
+            timestampable: true
+
+jms_serializer: # For third part bundles need to tell jms to serialize based on metadata
+    metadata:
+        directories:
+            - { path: %kernel.root_dir%/Resources/FOSUserBundle/serializer, namespace_prefix: 'FOS\UserBundle' }
+
+doctrine_migrations:
+    dir_name: "%kernel.root_dir%/../src/Persuit/Database/Migrations"
+    namespace: Persuit\Database\Migrations
+    table_name: migration_versions
+    name: Application Migrations
+
+services:
+    my_formatter:
+        class: Monolog\Formatter\JsonFormatter
+
+monolog:
+    handlers:
+        notification:
+            # log all messages (since debug is the lowest level)
+            level:    debug
+            type:     stream
+            path:     "%kernel.logs_dir%/notification_%kernel.environment%.log"
+            channels: []
+            formatter: my_formatter
+        # an example of *not* logging security channel messages for this handler
+        main:
+            channels: []
+
+knp_snappy:
+    pdf:
+        enabled:    true
+        binary:     %kernel.root_dir%/../bin/wkhtmltopdf-amd64
+        options:    []
+
+nelmio_cors:
+    paths:
+        '^/opportunity':
+            allow_methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE']
+
+        # catch all path must go last
+        '^/':
+            allow_methods: ['GET']

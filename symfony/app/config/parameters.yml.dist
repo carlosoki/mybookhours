@@ -1,0 +1,13 @@
+parameters:
+    database_driver: pdo_mysql
+    database_host: 127.0.0.1
+    database_port: null
+    database_name: mybookhours
+    database_user: root
+    database_password: root
+
+    locale: en
+    secret: replacethis
+    database_path: null
+    jms_serializer.json_serialization_visitor.class: Persuit\Bundle\Api\Service\JsonSerializationVisitor
+    jms_serializer.camel_case_naming_strategy.class: JMS\Serializer\Naming\IdenticalPropertyNamingStrategy

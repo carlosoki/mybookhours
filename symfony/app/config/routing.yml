@@ -1,0 +1,3 @@
+persuit_api:
+    resource: "@PersuitApiBundle/Resources/config/routing.yml"
+    prefix:   /

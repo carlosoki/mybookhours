@@ -1,0 +1,10 @@
+/web/bundles/
+/web/hal-browser/
+/app/cache/*
+/app/logs/*
+/build/
+/vendor/
+/bin/
+/composer.phar
+/app/config/parameters.yml
+persuit-file-upload/

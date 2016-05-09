@@ -1,0 +1,7 @@
+suites:
+  persuit_location_bundle:
+    namespace: Persuit\Bundle\LocationBundle
+    spec_path: src/Persuit/Bundle/LocationBundle/Tests
+  persuit_bundle:
+    namespace: Persuit\Bundle\ApiBundle
+    spec_path: src/Persuit/Bundle/ApiBundle/Tests
