@@ -22,10 +22,6 @@ monolog:
 assetic:
     use_controller: true
 
-#        project_cloud:
-#            adapter: s3_adapter
-#            alias:   project_filesystem
-
 nelmio_cors:
     defaults:
         allow_credentials: true

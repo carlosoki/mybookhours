@@ -11,17 +11,11 @@ use Behat\Behat\Hook\Scope\BeforeScenarioScope;
 
 class WebApiContext extends BaseApiContext implements Context
 {
-    protected $oauthContext;
-    protected $userContext;
     protected $authorization;
 
     /** @BeforeScenario */
     public function gatherContexts(BeforeScenarioScope $scope)
     {
-        $environment = $scope->getEnvironment();
-
-        $this->oauthContext = $environment->getContext('Project\GlobalFeatures\OauthContext');
-        $this->userContext = $environment->getContext('Project\GlobalFeatures\UserContext');
     }
 
     /**
@@ -178,6 +172,7 @@ class WebApiContext extends BaseApiContext implements Context
      */
     public function iAmAuthenticatingAs($username, $password = null)
     {
+        /*
         $user = $this->userContext->findUser($username);
         if(! $user)
         {
@@ -187,6 +182,7 @@ class WebApiContext extends BaseApiContext implements Context
         $this->removeHeader('Authorization');
         $this->authorization = $this->oauthContext->generateTokenForUser($username);
         $this->addHeader('Authorization', 'Bearer ' . $this->authorization);
+         */
     }
 
     /**

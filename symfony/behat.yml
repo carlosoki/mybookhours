@@ -7,9 +7,6 @@ default:
                - Project\Bundle\Api\Features\Context\FeatureContext
                - Project\GlobalFeatures\DatabaseFeatureContext
                - Project\GlobalFeatures\WebApiContext
-               - Project\GlobalFeatures\UserContext
-               - Project\GlobalFeatures\OauthContext
-               - Project\GlobalFeatures\LocationContext
 
   extensions:
     Behat\Symfony2Extension: ~
