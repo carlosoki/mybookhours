@@ -1,26 +1,15 @@
 default:
   suites:
-      persuit_api_bundle:
+      project_api_bundle:
           type: symfony_bundle
-          bundle: PersuitApiBundle
+          bundle: ProjectApiBundle
           contexts:
-               - Persuit\Bundle\Api\Features\Context\FeatureContext
-               - Persuit\GlobalFeatures\DatabaseFeatureContext
-               - Persuit\GlobalFeatures\WebApiContext
-               - Persuit\GlobalFeatures\UserContext
-               - Persuit\GlobalFeatures\OauthContext
-               - Persuit\GlobalFeatures\LocationContext
-
-      persuit_location_bundle:
-          type: symfony_bundle
-          bundle: PersuitLocationBundle
-          contexts:
-               - Persuit\Bundle\Location\Features\Context\FeatureContext
-               - Persuit\GlobalFeatures\DatabaseFeatureContext
-               - Persuit\GlobalFeatures\WebApiContext
-               - Persuit\GlobalFeatures\UserContext
-               - Persuit\GlobalFeatures\OauthContext
-               - Persuit\GlobalFeatures\LocationContext
+               - Project\Bundle\Api\Features\Context\FeatureContext
+               - Project\GlobalFeatures\DatabaseFeatureContext
+               - Project\GlobalFeatures\WebApiContext
+               - Project\GlobalFeatures\UserContext
+               - Project\GlobalFeatures\OauthContext
+               - Project\GlobalFeatures\LocationContext
 
   extensions:
     Behat\Symfony2Extension: ~

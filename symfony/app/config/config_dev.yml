@@ -22,9 +22,9 @@ monolog:
 assetic:
     use_controller: true
 
-#        persuit_cloud:
+#        project_cloud:
 #            adapter: s3_adapter
-#            alias:   persuit_filesystem
+#            alias:   project_filesystem
 
 nelmio_cors:
     defaults:

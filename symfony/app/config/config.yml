@@ -30,7 +30,7 @@ twig:
 assetic:
     debug:          %kernel.debug%
     use_controller: false
-    bundles:        [ PersuitApiBundle ]
+    bundles:        [ ProjectApiBundle ]
     filters:
         cssrewrite: ~
 
@@ -72,7 +72,7 @@ fos_rest:
             json: true
         templating_formats:
             html: false
-        exception_wrapper_handler: 'Persuit\Bundle\Api\Service\ExceptionWrapperHandler'
+        exception_wrapper_handler: 'Project\Bundle\Api\Service\ExceptionWrapperHandler'
     format_listener:
         rules:
             - { path: ^/, priorities: [ json ], fallback_format: json, prefer_extension: true }
@@ -114,8 +114,8 @@ jms_serializer: # For third part bundles need to tell jms to serialize based on 
             - { path: %kernel.root_dir%/Resources/FOSUserBundle/serializer, namespace_prefix: 'FOS\UserBundle' }
 
 doctrine_migrations:
-    dir_name: "%kernel.root_dir%/../src/Persuit/Database/Migrations"
-    namespace: Persuit\Database\Migrations
+    dir_name: "%kernel.root_dir%/../src/Project/Database/Migrations"
+    namespace: Project\Database\Migrations
     table_name: migration_versions
     name: Application Migrations
 

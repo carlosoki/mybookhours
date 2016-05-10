@@ -1,3 +1,0 @@
-persuit_profession:
-  resource: "@PersuitApiBundle/Resources/config/routing/Client.yml"
-  prefix:   /

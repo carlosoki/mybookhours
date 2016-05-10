@@ -1,5 +1,0 @@
-profession_list:
-  path:     /clients
-  defaults: { _controller: PersuitApiBundle:Client:getClients }
-  methods: GET
-

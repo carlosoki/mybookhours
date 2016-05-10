@@ -32,7 +32,7 @@ monolog:
 nelmio_cors:
     defaults:
         allow_credentials: true
-        allow_origin: ['https://uat-app.persuit.com', 'https://app.persuit.com', 'http://uat-app.persuit.com.s3-website-ap-southeast-1.amazonaws.com']
+        allow_origin: ['https://uat-app.project.com', 'https://app.project.com', 'http://uat-app.project.com.s3-website-ap-southeast-1.amazonaws.com']
         allow_headers: ['*']
         allow_methods: []
         expose_headers: []

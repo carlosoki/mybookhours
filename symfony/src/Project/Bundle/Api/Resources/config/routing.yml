@@ -1,0 +1,3 @@
+project_profession:
+  resource: "@ProjectApiBundle/Resources/config/routing/Client.yml"
+  prefix:   /
