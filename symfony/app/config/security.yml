@@ -21,19 +21,11 @@ security:
             id: fos_user.user_provider.username_email
 
     firewalls:
-#        oauth_token:
-#            pattern:    ^/oauth/v2/token
-#            security:   false
 
         main:
             pattern: ^/
-#            fos_oauth:  false
             anonymous: true
             stateless: true
-#            form_login:
-#                provider: fos_userbundle
-#                check_path: /oauth/auth_login_check
-#                login_path: /oauth/v2/token
 
     access_control:
         - { path: ^/users, roles: IS_AUTHENTICATED_FULLY }

@@ -9,6 +9,7 @@
 namespace Project\Bundle\Api\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 use JMS\Serializer\Annotation AS Serializer;
 
 /**
@@ -42,6 +43,15 @@ class Client
 
     /**
      * @ORM\Column(name="type_contract", type="string", nullable=true)
+     *
+     * @Assert\Choice(
+     *  choices = {
+     *      project\Bundle\Api\Entity\client::CASUAL,
+     *      project\Bundle\Api\Entity\client::PART_TIME,
+     *      project\Bundle\Api\Entity\client::FULL_TIME,
+     *
+     *  })
+     *
      * @Serializer\Groups({"client", "client_list" })
      */
     private $typeContract;

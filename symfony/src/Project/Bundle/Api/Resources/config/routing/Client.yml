@@ -9,3 +9,15 @@ client:
   methods: GET
   requirements:
     id: \d+
+
+client_new:
+  path:   /client
+  defaults: { _controller: ProjectApiBundle:Client:NewClient }
+  methods: POST
+
+client_edit:
+  path: /client/{id}
+  defaults: { _controller: ProjectApiBundle:Client:UpdateClient }
+  methods: [PUT,PATCH]
+  requirements:
+    id:  \d+

@@ -42,5 +42,22 @@ class BaseController extends FOSRestController
 
         return $view;
     }
+
+    public function processForm(Request $request, $formName, $form, $repoName, $object, $routeName, array $groupSerializer, $statusCode = null )
+    {
+        $this->wrapRequest($request, $formName);
+
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            $this->getRepo($repoName)->save($object);
+            
+            $url = $this->generateUrl($routeName, ['id' => $object->getId()]);
+
+            return $this->renderSerializedView($groupSerializer, $object, $statusCode, $url);
+        } else {
+            return $form;
+        }
+    }
 }
 
