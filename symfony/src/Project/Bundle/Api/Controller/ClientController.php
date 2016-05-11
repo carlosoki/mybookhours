@@ -51,7 +51,7 @@ class ClientController extends BaseController
      *     404 = "Returned when the Client is not found"
      *   }
      * )
-     * 
+     *
      * @param $id
      * @return \FOS\RestBundle\View\View
      */
