@@ -1,5 +1,11 @@
-profession_list:
+client_list:
   path:     /clients
   defaults: { _controller: ProjectApiBundle:Client:getClients }
   methods: GET
 
+client:
+  path:     /client/{id}
+  defaults: { _controller: ProjectApiBundle:Client:getClient }
+  methods: GET
+  requirements:
+    id: \d+

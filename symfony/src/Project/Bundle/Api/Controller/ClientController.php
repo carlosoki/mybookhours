@@ -8,30 +8,62 @@
 
 namespace Project\Bundle\Api\Controller;
 
-use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Controller\Annotations;
-use JMS\Serializer\SerializationContext;
-use Symfony\Component\HttpFoundation\Response;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * Class ClientController
  * @package Project\Bundle\Api\Controller
  */
-class ClientController extends FOSRestController
+class ClientController extends BaseController
 {
+    const CLIENT_REPO = 'api.repository.client';
+
+    /**
+     * @ApiDoc(
+     *   resource=true,
+     *   output = "Persuit\Api\Entity\Client",
+     *   description="Finds and displays the collection of clients",
+     *   statusCodes = {
+     *     200 = "Returned"
+     *   }
+     * )
+     *
+     * @return \FOS\RestBundle\View\View
+     */
     public function getClientsAction()
     {
-        $clientRepo = $this->get('api.repository.client');
+        $client = $this->getRepo(self::CLIENT_REPO)->findAll();
 
-        $client = $clientRepo->findAll();
+        $url = $this->generateUrl('client_list');
 
-        $url = 'client/';
-        $view = $this->view($client, Response::HTTP_OK)->setHeader('Location', $url);
-        $context = SerializationContext::create()->setGroups(['client_list']);
+        return $this->renderSerializedView(['client_list'], $client, null, $url);
+    }
 
-        $view->setSerializationContext($context);
+    /**
+     * @ApiDoc(
+     *   resource=true,
+     *   output = "Persuit\Api\Entity\Client",
+     *   description="Finds and displays client by id",
+     *   statusCodes = {
+     *     200 = "Returned when successful",
+     *     404 = "Returned when the Client is not found"
+     *   }
+     * )
+     * 
+     * @param $id
+     * @return \FOS\RestBundle\View\View
+     */
+    public function getClientAction($id)
+    {
+        $client = $this->getRepo(self::CLIENT_REPO)->findOneBy(['id'=> $id]);
 
-        return $view;
-        //return new JsonResponse(array('client'=>$client), 200);
+        if (!$client) {
+            throw new NotFoundHttpException('Client id:'.$id.' does not exist');
+        }
+        $url = $this->generateUrl('client', ['id' => $client->getId()]);
+
+        return $this->renderSerializedView(['client'], $client, null, $url);
     }
 }
