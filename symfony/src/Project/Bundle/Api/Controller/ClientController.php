@@ -121,7 +121,7 @@ class ClientController extends BaseController
         if (!$client) {
             throw new NotFoundHttpException('Client id:'.$id.' does not exist');
         }
-        $form = $this->createForm(ClientType::class, $client, ['method' => $request->getMethod()] );
+        $form = $this->createForm(ClientType::class, $client, ['method' => $request->getMethod()]);
 
         return $this->processForm(
             $request, self::FORM_NAME, $form, self::CLIENT_REPO,
