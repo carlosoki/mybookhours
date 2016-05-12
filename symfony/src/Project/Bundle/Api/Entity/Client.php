@@ -58,9 +58,15 @@ class Client
 
     /**
      * @ORM\Column(name="rate", type="decimal", scale=2, nullable=true)
-     *  @Serializer\Groups({"client", "client_list" })
+     * @Serializer\Groups({"client", "client_list" })
      */
     private $rate;
+
+    /**
+     * @ORM\Column(name="is_inactive", type="boolean", nullable=true, options={"default" = 0})
+     * @Serializer\Groups({"client", "client_list" })
+     */
+    private $isInactive = false;
 
     /**
      * @return mixed
@@ -123,6 +129,25 @@ class Client
     public function setRate($rate)
     {
         $this->rate = $rate;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIsInactive()
+    {
+        return $this->isInactive;
+    }
+
+    /**
+     * @param mixed $isInactive
+     * @return Client
+     */
+    public function setIsInactive($isInactive)
+    {
+        $this->isInactive = $isInactive;
 
         return $this;
     }

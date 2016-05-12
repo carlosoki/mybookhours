@@ -9,7 +9,6 @@ use Behat\Gherkin\Node\TableNode;
 use Symfony\Component\HttpKernel\KernelInterface;
 use Doctrine\ORM\Tools\SchemaTool;
 use Doctrine\Common\Inflector\Inflector;
-use Behat\Behat\Hook\Scope\BeforeScenarioScope;
 
 /**
  * Defines application features from the specific context.
@@ -23,7 +22,6 @@ class DatabaseFeatureContext implements Context, SnippetAcceptingContext, Kernel
      * @var \Symfony\Component\HttpKernel\KernelInterface $kernel
      */
     private $kernel = null;
-    private $locationContext;
 
     /**
      * @param \Symfony\Component\HttpKernel\KernelInterface $kernel
@@ -33,13 +31,6 @@ class DatabaseFeatureContext implements Context, SnippetAcceptingContext, Kernel
     public function setKernel(KernelInterface $kernel)
     {
         $this->kernel = $kernel;
-    }
-
-    /** @BeforeScenario
-     * @param BeforeScenarioScope $scope
-     */
-    public function gatherContexts(BeforeScenarioScope $scope)
-    {
     }
 
     /**
