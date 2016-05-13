@@ -1,3 +1,7 @@
-project_profession:
+project_client:
   resource: "@ProjectApiBundle/Resources/config/routing/Client.yml"
+  prefix:   /
+
+project_client_log:
+  resource: "@ProjectApiBundle/Resources/config/routing/ClientLog.yml"
   prefix:   /

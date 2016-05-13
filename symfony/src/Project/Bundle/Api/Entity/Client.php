@@ -14,7 +14,7 @@ use JMS\Serializer\Annotation AS Serializer;
 
 /**
  * Class Client
- * @package Project\Bundle\Api\Entity\
+ * @package Project\Bundle\Api\Entity
  *
  * @ORM\Entity(repositoryClass="Project\Bundle\Api\Entity\Repository\ClientRepository")
  * @ORM\Table(name="client")
