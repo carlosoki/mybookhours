@@ -8,10 +8,10 @@
 
 namespace Project\Bundle\Api\Form\Type;
 
+use Doctrine\ORM\EntityManager;
 use FOS\RestBundle\Form\Transformer\EntityToIdObjectTransformer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -21,14 +21,14 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Class ClientLog
+ * Class ClientLogType
  * @package Project\Bundle\Api\Form\Type
  */
-class ClientLog extends AbstractType
+class ClientLogType extends AbstractType
 {
     private $em;
 
-    public function __construct($em)
+    public function __construct(EntityManager $em)
     {
         $this->em = $em;
     }
@@ -37,15 +37,18 @@ class ClientLog extends AbstractType
     {
         $client = new EntityToIdObjectTransformer($this->em, 'ProjectApiBundle:Client');
 
-        $builder->add($builder->create('client', TextType::class)->addModelTransformer($this->em, $client))
-            ->add('date', DateType::class)
-            ->add('durationPeriod', IntegerType::class)
-            ->add('startTime', TimeType::class)
-            ->add('endTime', TimeType::class)
-            ->add('breakPeriod', IntegerType::class)
-            ->add('rate', MoneyType::class)
-            ->add('km', NumberType::class)
-            ->add('totalPayment', MoneyType::class)
+        $builder->add($builder->create('client', TextType::class)->addModelTransformer($client))
+            ->add('date', DateType::class, [
+                'widget' => 'single_text',
+                'format' => 'yyyy-MM-dd',
+            ])
+            ->add('durationPeriod', TimeType::class, ['widget' => 'single_text'])
+            ->add('startTime', TimeType::class, ['widget' => 'single_text'])
+            ->add('endTime', TimeType::class, ['widget' => 'single_text'])
+            ->add('breakPeriod', TimeType::class, ['widget' => 'single_text'])
+            ->add('rate', MoneyType::class, ['scale' => 2])
+            ->add('km', NumberType::class, ['scale' => 2])
+            ->add('totalPayment', MoneyType::class, ['scale' => 2])
             ->add('description', TextareaType::class)
             ->getForm();
     }

@@ -31,13 +31,13 @@ class Client
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      * @ORM\Column(name="id", type="integer")
-     * @Serializer\Groups({"client", "client_list" })
+     * @Serializer\Groups({"client", "clientLog", "client_list" })
      */
     private $id;
 
     /**
      * @ORM\Column(name="name", type="string")
-     * @Serializer\Groups({"client", "client_list" })
+     * @Serializer\Groups({"client", "clientLog", "client_list" })
      */
     private $name;
 

@@ -2,3 +2,10 @@ client_log_new:
   path:   /client/log
   defaults: { _controller: ProjectApiBundle:ClientLog:newClientLog }
   methods: POST
+
+client_log:
+  path:     /client/log/{id}
+  defaults: { _controller: ProjectApiBundle:ClientLog:getClientLog }
+  methods: GET
+  requirements:
+    id: \d+

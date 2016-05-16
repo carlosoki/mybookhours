@@ -13,7 +13,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use JMS\Serializer\Annotation as Serializer;
 
 /**
- * Class ClientLog
+ * Class ClientLogType
  * @package Project\Bundle\Api\Entity
  *
  * @ORM\Entity(repositoryClass="Project\Bundle\Api\Entity\Repository\ClientLogRepository")
@@ -26,59 +26,82 @@ class ClientLog
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      * @ORM\Column(name="id", type="integer")
+     *
      * @Serializer\Groups({"clientLog", "clientLog_list" })
      */
     private $id;
 
-    /***
+    /**
      * @ORM\ManyToOne(targetEntity="Project\Bundle\Api\Entity\Client")
-     * @ORM\JoinColumn(name="client_id")
+     * @ORM\JoinColumn(name="client_id",nullable=false)
      *
+     * @Serializer\Groups({"clientLog", "clientLog_list" })
      */
     private $client;
 
     /**
      * @ORM\Column(type="date")
+     *
+     * @Serializer\Type("DateTime<'Y-m-d'>")
+     * @Serializer\Groups({"clientLog", "clientLog_list" })
      */
     private $date;
 
     /**
-     * @ORM\Column(name="duration_period", type="integer")
+     * @ORM\Column(name="duration_period", type="float")
+     *
+     * @Serializer\Groups({"clientLog", "clientLog_list" })
      */
     private $durationPeriod;
 
     /**
      * @ORM\Column(name="start_time", type="time", nullable=true)
+     *
+     * @Serializer\Type("DateTime<'H:i'>")
+     * @Serializer\Groups({"clientLog", "clientLog_list" })
      */
     private $startTime;
 
     /**
      * @ORM\Column(name="end_time", type="time", nullable=true)
+     *
+     * @Serializer\Type("DateTime<'H:i'>")
+     * @Serializer\Groups({"clientLog", "clientLog_list" })
      */
     private $endTime;
 
     /**
-     * @ORM\Column(name="break_period", type="integer", nullable=true)
+     * @ORM\Column(name="break_period", type="float", nullable=true)
+     *
+     * @Serializer\Groups({"clientLog", "clientLog_list" })
      */
     private $breakPeriod;
 
     /**
      * @ORM\Column(type="decimal", scale=2, nullable=true)
+     *
+     * @Serializer\Groups({"clientLog", "clientLog_list" })
      */
     private $rate;
 
     /**
-     * @ORM\Column(type="decimal", nullable=true)
+     * @ORM\Column(type="float", nullable=true)
+     *
+     * @Serializer\Groups({"clientLog", "clientLog_list" })
      */
     private $km;
 
     /**
-     * @ORM\Column(name="total_payment", type="decimal", scale=2, nullable=true, nullable=true)
+     * @ORM\Column(name="total_payment", type="decimal", scale=2, nullable=true)
+     *
+     * @Serializer\Groups({"clientLog", "clientLog_list" })
      */
     private $totalPayment;
 
     /**
      * @ORM\Column(type="text", nullable=true)
+     *
+     * @Serializer\Groups({"clientLog"})
      */
     private $description;
 

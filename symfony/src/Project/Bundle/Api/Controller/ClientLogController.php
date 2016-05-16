@@ -8,7 +8,10 @@
 
 namespace Project\Bundle\Api\Controller;
 
+use Project\Bundle\Api\Entity\ClientLog;
+use Project\Bundle\Api\Form\Type\ClientLogType;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Class ClientLogController
@@ -17,10 +20,22 @@ use Symfony\Component\HttpFoundation\Request;
 class ClientLogController extends BaseController
 {
     const  FORM_NAME = 'client_log_type';
+    const CLIENT_LOG_REPO = 'api.repository.client.log';
+
+    public function getClientLogAction($id)
+    {
+        return 'client_log by id';
+    }
 
     public function newClientLogAction(Request $request)
     {
-        return 'here!';
+        $clientLog = new ClientLog();
+        $form = $this->createForm(ClientLogType::class, $clientLog);
+
+        return $this->processForm(
+            $request, self::FORM_NAME, $form, self::CLIENT_LOG_REPO,
+            $clientLog, 'client_log', ['clientLog'], Response::HTTP_CREATED
+        );
     }
 
 }
