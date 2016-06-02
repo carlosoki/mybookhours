@@ -11,6 +11,7 @@ namespace Project\Bundle\Api\Form\Type;
 use Doctrine\ORM\EntityManager;
 use FOS\RestBundle\Form\Transformer\EntityToIdObjectTransformer;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
@@ -38,13 +39,15 @@ class ClientLogType extends AbstractType
         $client = new EntityToIdObjectTransformer($this->em, 'ProjectApiBundle:Client');
 
         $builder->add($builder->create('client', TextType::class)->addModelTransformer($client))
-            ->add('date', DateType::class, [
+            ->add('start', DateTimeType::class, [
                 'widget' => 'single_text',
-                'format' => 'yyyy-MM-dd',
+                'format' => 'yyyy-MM-dd HH:mm:ss',
+            ])
+            ->add('end', DateTimeType::class, [
+                'widget' => 'single_text',
+                'format' => 'yyyy-MM-dd HH:mm:ss',
             ])
             ->add('durationPeriod', TimeType::class, ['widget' => 'single_text'])
-            ->add('startTime', TimeType::class, ['widget' => 'single_text'])
-            ->add('endTime', TimeType::class, ['widget' => 'single_text'])
             ->add('breakPeriod', TimeType::class, ['widget' => 'single_text'])
             ->add('rate', MoneyType::class, ['scale' => 2])
             ->add('km', NumberType::class, ['scale' => 2])

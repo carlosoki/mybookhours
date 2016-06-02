@@ -9,3 +9,8 @@ client_log:
   methods: GET
   requirements:
     id: \d+
+
+client_log_list:
+  path:   /client/log
+  defaults: { _controller: ProjectApiBundle:ClientLog:getClientLogs }
+  methods: GET

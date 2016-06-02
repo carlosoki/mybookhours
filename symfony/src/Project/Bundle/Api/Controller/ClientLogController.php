@@ -27,6 +27,11 @@ class ClientLogController extends BaseController
         return 'client_log by id';
     }
 
+    public function getClientLogsAction()
+    {
+        return 'client_log collection';
+    }
+
     public function newClientLogAction(Request $request)
     {
         $clientLog = new ClientLog();
@@ -38,4 +43,4 @@ class ClientLogController extends BaseController
         );
     }
 
-}
+} 

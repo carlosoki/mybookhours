@@ -40,39 +40,32 @@ class ClientLog
     private $client;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(name="duration_period", type="time")
      *
-     * @Serializer\Type("DateTime<'Y-m-d'>")
-     * @Serializer\Groups({"clientLog", "clientLog_list" })
-     */
-    private $date;
-
-    /**
-     * @ORM\Column(name="duration_period", type="float")
-     *
+     * @Serializer\Type("DateTime<'H:i'>")
      * @Serializer\Groups({"clientLog", "clientLog_list" })
      */
     private $durationPeriod;
 
     /**
-     * @ORM\Column(name="start_time", type="time", nullable=true)
+     * @ORM\Column(name="start_time", type="datetime", nullable=true)
      *
-     * @Serializer\Type("DateTime<'H:i'>")
+     *
      * @Serializer\Groups({"clientLog", "clientLog_list" })
      */
-    private $startTime;
+    private $start;
 
     /**
-     * @ORM\Column(name="end_time", type="time", nullable=true)
+     * @ORM\Column(name="end_time", type="datetime", nullable=true)
      *
-     * @Serializer\Type("DateTime<'H:i'>")
      * @Serializer\Groups({"clientLog", "clientLog_list" })
      */
-    private $endTime;
+    private $end;
 
     /**
-     * @ORM\Column(name="break_period", type="float", nullable=true)
+     * @ORM\Column(name="break_period", type="time", nullable=true)
      *
+     * @Serializer\Type("DateTime<'H:i'>")
      * @Serializer\Groups({"clientLog", "clientLog_list" })
      */
     private $breakPeriod;
@@ -135,18 +128,18 @@ class ClientLog
     /**
      * @return mixed
      */
-    public function getDate()
+    public function getStart()
     {
-        return $this->date;
+        return $this->start;
     }
 
     /**
-     * @param mixed $date
+     * @param mixed $start
      * @return ClientLog
      */
-    public function setDate($date)
+    public function setStart($start)
     {
-        $this->date = $date;
+        $this->start = $start;
 
         return $this;
     }
@@ -154,37 +147,18 @@ class ClientLog
     /**
      * @return mixed
      */
-    public function getStartTime()
+    public function getEnd()
     {
-        return $this->startTime;
+        return $this->end;
     }
 
     /**
-     * @param mixed $startTime
+     * @param mixed $end
      * @return ClientLog
      */
-    public function setStartTime($startTime)
+    public function setEnd($end)
     {
-        $this->startTime = $startTime;
-
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getEndTime()
-    {
-        return $this->endTime;
-    }
-
-    /**
-     * @param mixed $endTime
-     * @return ClientLog
-     */
-    public function setEndTime($endTime)
-    {
-        $this->endTime = $endTime;
+        $this->end = $end;
 
         return $this;
     }
