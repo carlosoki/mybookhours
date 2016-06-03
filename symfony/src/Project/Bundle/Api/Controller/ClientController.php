@@ -37,9 +37,13 @@ class ClientController extends BaseController
      *
      * @return \FOS\RestBundle\View\View
      */
-    public function getClientsAction()
+    public function getApiClientsAction(bool $fromApp = null)
     {
         $client = $this->getRepo(self::CLIENT_REPO)->findAll();
+
+        if ($fromApp) {
+            return $client;
+        }
 
         $url = $this->generateUrl('api_client_list');
 
@@ -60,7 +64,7 @@ class ClientController extends BaseController
      * @param $id
      * @return \FOS\RestBundle\View\View
      */
-    public function getClientAction($id)
+    public function getApiClientAction($id)
     {
         $client = $this->getRepo(self::CLIENT_REPO)->find($id);
 
@@ -87,7 +91,7 @@ class ClientController extends BaseController
      * @param Request $request
      * @return \FOS\RestBundle\View\View
      */
-    public function NewClientAction(Request $request)
+    public function NewApiClientAction(Request $request)
     {
         $client = new Client();
         $form = $this->createForm(ClientType::class, $client);
@@ -114,7 +118,7 @@ class ClientController extends BaseController
      * @param $id
      * @return \FOS\RestBundle\View\View
      */
-    public function UpdateClientAction(Request $request, $id)
+    public function UpdateApiClientAction(Request $request, $id)
     {
         $client = $this->getRepo(self::CLIENT_REPO)->find($id);
 

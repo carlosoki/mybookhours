@@ -1,0 +1,70 @@
+{% extends 'ProjectAppBundle::metronic.html.twig' %}
+
+{% block page_title %}
+    <h3 class="page-title"> Client Registration
+        <small></small>
+    </h3>
+{% endblock %}
+
+{% block page_breadcrumb %}
+    <li>
+        <i class="icon-home"></i>
+        <a href="{{ path('app_dashboard') }}">Dashboard</a>
+        <i class="fa fa-angle-right"></i>
+        <a href="javascript:;">Client</a>
+        <i class="fa fa-angle-right"></i>
+    </li>
+{% endblock %}
+
+{% block body -%}
+    {% block content %}
+        <div class="portlet box blue">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-gift"></i>New client </div>
+                <div class="tools">
+                    <a href="javascript:;" class="collapse"> </a>
+                </div>
+            </div>
+            <div class="portlet-body form">
+                <!-- BEGIN FORM-->
+                <form action="#" class="form-horizontal">
+                    <div class="form-body">
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Name</label>
+                            <div class="col-md-4">
+                                <input type="text" class="form-control input-circle" placeholder="Enter client name">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Address</label>
+                            <div class="col-md-4">
+                                <div class="input-icon">
+                                    <i class="fa fa-map-o"></i>
+                                    <input type="text" class="form-control input-circle" placeholder="Client full address"> </div>
+                                    <span class="help-block"> Enter the client's full addres. </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3">Active</label>
+                            <div class="col-md-9">
+                                <input type="checkbox" checked class="make-switch" id="test" data-off-color="danger"
+                                       data-on-color="default" data-size="small" data-on-text="yes" data-off-text="no">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <div class="row">
+                            <div class="col-md-offset-3 col-md-9">
+                                <button type="submit" class="btn btn-circle blue">Save</button>
+                                <button href="" class="btn btn-circle blue">List of clients</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <!-- END FORM-->
+            </div>
+        </div>
+
+    {% endblock %}
+{% endblock %}

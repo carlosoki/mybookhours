@@ -197,30 +197,32 @@
                     <!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
                     <!-- DOC: Set data-keep-expand="true" to keep the submenues expanded -->
                     <!-- DOC: Set data-auto-speed="200" to adjust the sub menu slide up/down speed -->
-                    <ul class="page-sidebar-menu  page-header-fixed page-sidebar-menu-hover-submenu " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
-                        <li class="nav-item start active open">
-                            <a href="javascript:;" class="nav-link nav-toggle">
+                    <ul class="page-sidebar-menu page-sidebar-menu-light page-header-fixed  " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
+                        <li class="nav-item start {% if app.request.get('_route') == 'app_dashboard' %} active open {% endif %}">
+                            <a href="{{ path('app_dashboard') }}" class="nav-link nav-toggle">
                                 <i class="icon-home"></i>
                                 <span class="title">Dashboard</span>
-                                <span class="selected"></span>
-                                <span class="arrow open"></span>
+                                <span class="{% if app.request.get('_route') == 'app_dashboard' %} selected {% endif %}"></span>
+                                <span class="{% if app.request.get('_route') == 'app_dashboard' %} arrow open {% endif %}"></span>
                             </a>
                         </li>
-                        <li class="nav-item  ">
+                        <li class="nav-item  {% if app.request.get('_route') == 'app_client_new' %} active open {% endif %}">
                             <a href="javascript:;" class="nav-link nav-toggle">
                                 <i class="icon-users"></i>
                                 <span class="title">Clients</span>
-                                <span class="arrow"></span>
+                                <span class="{% if app.request.get('_route') == 'app_client_new' %} selected {% endif %}"></span>
+                                <span class="{% if app.request.get('_route') == 'app_client_new' %} arrow open {% endif %}"></span>
                             </a>
                             <ul class="sub-menu">
                                 <li class="nav-item  ">
-                                    <a href="ui_colors.html" class="nav-link ">
+                                    <a href="{{ path('app_client_list') }}" class="nav-link ">
                                         <span class="title">Search clients</span>
                                     </a>
                                 </li>
-                                <li class="nav-item  ">
-                                    <a href="ui_general.html" class="nav-link ">
+                                <li class="nav-item {% if app.request.get('_route') == 'app_client_new' %} active open {% endif %} ">
+                                    <a href="{{ path('app_client_new') }}" class="nav-link ">
                                         <span class="title">New client</span>
+                                        <span class="{% if app.request.get('_route') == 'app_client_new' %} selected {% endif %}"></span>
                                     </a>
                                 </li>
                             </ul>

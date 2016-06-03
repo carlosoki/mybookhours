@@ -1,4 +1,15 @@
 app_client_list:
   path:     /clients
-  defaults: { _controller: 'ProjectApiBundle:Client:getClients' }
+  defaults: { _controller: 'ProjectAppBundle:Client:getAppClients' }
   methods: GET
+
+app_client_new:
+  path: /client/new
+  defaults: { _controller: 'ProjectAppBundle:Client:newAppClient' }
+  methods: GET
+
+api_client_new:
+  path:   /client
+  defaults: { _controller: 'ProjectAppBundle:Client:saveAppNewClient' }
+  methods: POST
+
