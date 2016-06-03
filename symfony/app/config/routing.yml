@@ -1,3 +1,7 @@
 project_api:
     resource: "@ProjectApiBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /api/
+
+project_app:
+    resource: "@ProjectAppBundle/Resources/config/routing.yml"
+    prefix:   /app/

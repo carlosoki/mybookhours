@@ -1,0 +1,5 @@
+project_app_dashboard:
+  resource: "@ProjectAppBundle/Resources/config/routing/Dashboard.yml"
+
+project_app_client:
+  resource: "@ProjectAppBundle/Resources/config/routing/Client.yml"

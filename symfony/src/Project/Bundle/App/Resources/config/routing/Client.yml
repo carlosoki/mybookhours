@@ -1,0 +1,4 @@
+app_client_list:
+  path:     /clients
+  defaults: { _controller: 'ProjectApiBundle:Client:getClients' }
+  methods: GET

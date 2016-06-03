@@ -26,7 +26,8 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
             new Oneup\FlysystemBundle\OneupFlysystemBundle(),
             new Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
-            new Project\Bundle\Api\ProjectApiBundle()
+            new Project\Bundle\Api\ProjectApiBundle(),
+            new Project\Bundle\App\ProjectAppBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

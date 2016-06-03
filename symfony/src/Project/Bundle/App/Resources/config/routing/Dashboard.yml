@@ -1,0 +1,4 @@
+app_dashboard:
+  path:     /dashboard
+  defaults: { _controller: 'ProjectAppBundle:Dashboard:getDashboard' }
+  methods: GET

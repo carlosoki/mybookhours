@@ -1,21 +1,21 @@
-client_list:
+api_client_list:
   path:     /clients
   defaults: { _controller: ProjectApiBundle:Client:getClients }
   methods: GET
 
-client:
+api_client:
   path:     /client/{id}
   defaults: { _controller: ProjectApiBundle:Client:getClient }
   methods: GET
   requirements:
     id: \d+
 
-client_new:
+api_client_new:
   path:   /client
   defaults: { _controller: ProjectApiBundle:Client:NewClient }
   methods: POST
 
-client_edit:
+api_client_edit:
   path: /client/{id}
   defaults: { _controller: ProjectApiBundle:Client:UpdateClient }
   methods: [PUT,PATCH]

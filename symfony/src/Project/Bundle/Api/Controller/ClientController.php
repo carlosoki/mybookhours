@@ -41,7 +41,7 @@ class ClientController extends BaseController
     {
         $client = $this->getRepo(self::CLIENT_REPO)->findAll();
 
-        $url = $this->generateUrl('client_list');
+        $url = $this->generateUrl('api_client_list');
 
         return $this->renderSerializedView(['client_list'], $client, null, $url);
     }
@@ -67,7 +67,7 @@ class ClientController extends BaseController
         if (!$client) {
             throw new NotFoundHttpException('Client id:'.$id.' does not exist');
         }
-        $url = $this->generateUrl('client', ['id' => $client->getId()]);
+        $url = $this->generateUrl('api_client', ['id' => $client->getId()]);
 
         return $this->renderSerializedView(['client'], $client, null, $url);
     }
