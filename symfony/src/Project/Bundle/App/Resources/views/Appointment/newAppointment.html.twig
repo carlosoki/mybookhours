@@ -1,0 +1,192 @@
+{% extends 'ProjectAppBundle::metronic.html.twig' %}
+
+{% block page_title %}
+    <h3 class="page-title">Registry Appointments
+        <small></small>
+    </h3>
+{% endblock %}
+
+{% block page_breadcrumb %}
+    <li>
+        <i class="icon-home"></i>
+        <a href="{{ path('app_dashboard') }}">Dashboard</a>
+        <i class="fa fa-angle-right"></i>
+        <a href="javascript:;">Appointments</a>
+        <i class="fa fa-angle-right"></i>
+    </li>
+{% endblock %}
+
+{% block body -%}
+    {% block content %}
+        <!-- START APPOINTMENT BLOCK -->
+        <div class="portlet box red">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-calendar"></i>New Appointment </div>
+                <div class="tools">
+                    <a href="javascript:;" class="collapse"> </a>
+                </div>
+            </div>
+            <div class="portlet-body form">
+                <!-- BEGIN FORM-->
+                <form action="#" class="form-horizontal">
+                    <div class="form-body">
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Appointment ID</label>
+                            <div class="col-md-4">
+                                <div class="input-icon">
+                                    <i class="fa fa-ban"></i>
+                                    <input type="password" class="form-control input-circle" placeholder="It'll be generated after save" disabled="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3">Start</label>
+                            <div class="col-md-4">
+                                <div class="input-group date form_datetime" data-date="{{ "now"|date("Y-m-d H:i:s") }}">
+                                    <input type="text" size="16" readonly class="form-control input-circle">
+                                    <span class="input-group-btn">
+                                        <button class="btn default date-reset input-circle" type="button">
+                                            <i class="fa fa-times"></i>
+                                        </button>
+                                        <button class="btn default date-set input-circle" type="button">
+                                            <i class="fa fa-calendar"></i>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3">End</label>
+                            <div class="col-md-4">
+                                <div class="input-group date form_datetime" data-date="{{ "now"|date("Y-m-d H:i:s") }}">
+                                    <input type="text" size="16" readonly class="form-control input-circle">
+                                    <span class="input-group-btn">
+                                        <button class="btn default date-reset input-circle" type="button">
+                                            <i class="fa fa-times"></i>
+                                        </button>
+                                        <button class="btn default date-set input-circle" type="button">
+                                            <i class="fa fa-calendar"></i>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Client</label>
+                            <div class="col-md-4">
+                                <div class="input-icon">
+                                    <i class="fa fa-search"></i>
+                                    <input type="text" class="form-control input-circle" placeholder="Enter client name">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Field staff</label>
+                            <div class="col-md-4">
+                                <div class="input-icon">
+                                    <i class="fa fa-search"></i>
+                                    <input type="text" class="form-control input-circle" placeholder="Enter staff name">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Service info</label>
+                            <div class="col-md-4">
+                                <textarea class="form-control input-circle" rows="3"></textarea>
+                                <span class="help-block"> Short description such Home care and respite. </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">List of tasks</label>
+                            <div class="col-md-4">
+                                <button type="button" class="btn btn-circle red">Add/View</button>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="form-actions">
+                        <div class="row">
+                            <div class="col-md-offset-3 col-md-9">
+                                <button type="submit" class="btn btn-circle red">Save</button>
+                                <a href="{{ path('app_appointment_list') }}" class="btn btn-circle red"> List of appointments </a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <!-- END FORM-->
+            </div>
+        </div>
+        <!-- END APPOINTMENT BLOCK -->
+
+        <!-- START NEEDS/TASKS BLOCK -->
+        <div class="portlet box red">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-tasks"></i>Client needs / tasks </div>
+                <div class="tools">
+                    <a href="javascript:;" class="collapse"> </a>
+                </div>
+            </div>
+            <div class="portlet-body form">
+                <!-- BEGIN FORM-->
+                <form action="#" class="form-horizontal">
+                    <div class="form-body">
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Appointment ID</label>
+                            <div class="col-md-4">
+                                <div class="input-icon">
+                                    <i class="fa fa-ban"></i>
+                                    <input type="password" class="form-control input-circle" placeholder="Imported from the appointment above" disabled="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Client</label>
+                            <div class="col-md-4">
+                                <div class="input-icon">
+                                    <i class="fa fa-ban"></i>
+                                    <input type="password" class="form-control input-circle" placeholder="Imported from the appointment above" disabled="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Info about client</label>
+                            <div class="col-md-4">
+                                <textarea class="form-control input-circle" rows="3"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Home care tasks</label>
+                            <div class="col-md-4">
+                                <textarea class="form-control input-circle" rows="3"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Personal care tasks</label>
+                            <div class="col-md-4">
+                                <textarea class="form-control input-circle" rows="3"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Respite tasks/info</label>
+                            <div class="col-md-4">
+                                <textarea class="form-control input-circle" rows="3"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <div class="row">
+                            <div class="col-md-offset-3 col-md-9">
+                                <button type="submit" class="btn btn-circle red">Save</button>
+                                <a href="{{ path('app_client_list') }}" class="btn btn-circle red"> Back to appointment </a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <!-- END FORM-->
+            </div>
+        </div>
+        <!-- END NEEDS/TASKS BLOCK -->
+    {% endblock %}
+{% endblock %}

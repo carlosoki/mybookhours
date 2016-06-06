@@ -3,3 +3,6 @@ project_app_dashboard:
 
 project_app_client:
   resource: "@ProjectAppBundle/Resources/config/routing/Client.yml"
+
+project_app_appointment:
+  resource: "@ProjectAppBundle/Resources/config/routing/Appointment.yml"

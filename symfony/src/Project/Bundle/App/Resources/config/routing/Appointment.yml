@@ -1,0 +1,15 @@
+app_appointment_list:
+  path: /appointments
+  defaults: { _controller: 'ProjectAppBundle:Appointment:getAppAppointments' }
+  methods: GET
+
+app_appointment_new:
+  path: /appointment/new
+  defaults: { _controller: 'ProjectAppBundle:Appointment:newAppAppointment' }
+  methods: GET
+
+api_appointment_new:
+  path:   /appointment
+  defaults: { _controller: 'ProjectAppBundle:Appointment:saveAppNewAppointment' }
+  methods: POST
+

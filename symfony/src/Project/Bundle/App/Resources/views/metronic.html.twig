@@ -24,6 +24,10 @@
 
         <!-- BEGIN PAGE LEVEL PLUGINS -->
         <link rel="stylesheet" href="{{ asset('assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.css') }}" />
+        <link rel="stylesheet" href="{{ asset('assets/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css') }}" />
+        <link rel="stylesheet" href="{{ asset('assets/global/plugins/bootstrap-timepicker/css/bootstrap-timepicker.min.css') }}" />
+        <link rel="stylesheet" href="{{ asset('assets/global/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css') }}" />
+        <link rel="stylesheet" href="{{ asset('assets/global/plugins/clockface/css/clockface.css') }}" />
         <link rel="stylesheet" href="{{ asset('assets/global/plugins/morris/morris.css') }}" />
         <link rel="stylesheet" href="{{ asset('assets/global/plugins/fullcalendar/fullcalendar.min.css') }}" />
         <link rel="stylesheet" href="{{ asset('assets/global/plugins/jqvmap/jqvmap/jqvmap.css') }}" />
@@ -108,60 +112,6 @@
                                                         </span> Server #2 not responding. </span>
                                                 </a>
                                             </li>
-                                            <li>
-                                                <a href="javascript:;">
-                                                    <span class="time">14 hrs</span>
-                                                    <span class="details">
-                                                        <span class="label label-sm label-icon label-info">
-                                                            <i class="fa fa-bullhorn"></i>
-                                                        </span> Application error. </span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:;">
-                                                    <span class="time">2 days</span>
-                                                    <span class="details">
-                                                        <span class="label label-sm label-icon label-danger">
-                                                            <i class="fa fa-bolt"></i>
-                                                        </span> Database overloaded 68%. </span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:;">
-                                                    <span class="time">3 days</span>
-                                                    <span class="details">
-                                                        <span class="label label-sm label-icon label-danger">
-                                                            <i class="fa fa-bolt"></i>
-                                                        </span> A user IP blocked. </span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:;">
-                                                    <span class="time">4 days</span>
-                                                    <span class="details">
-                                                        <span class="label label-sm label-icon label-warning">
-                                                            <i class="fa fa-bell-o"></i>
-                                                        </span> Storage Server #4 not responding dfdfdfd. </span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:;">
-                                                    <span class="time">5 days</span>
-                                                    <span class="details">
-                                                        <span class="label label-sm label-icon label-info">
-                                                            <i class="fa fa-bullhorn"></i>
-                                                        </span> System Error. </span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:;">
-                                                    <span class="time">9 days</span>
-                                                    <span class="details">
-                                                        <span class="label label-sm label-icon label-danger">
-                                                            <i class="fa fa-bolt"></i>
-                                                        </span> Storage server failed. </span>
-                                                </a>
-                                            </li>
                                         </ul>
                                     </li>
                                 </ul>
@@ -220,9 +170,10 @@
                                 <span class="{% if app.request.get('_route') in client_routers %} arrow open {% endif %}"></span>
                             </a>
                             <ul class="sub-menu">
-                                <li class="nav-item  ">
+                                <li class="nav-item {% if app.request.get('_route') == 'app_client_list' %} active open {% endif %}">
                                     <a href="{{ path('app_client_list') }}" class="nav-link ">
                                         <span class="title">Search clients</span>
+                                        <span class="{% if app.request.get('_route') == 'app_client_list' %} selected {% endif %}"></span>
                                     </a>
                                 </li>
                                 <li class="nav-item {% if app.request.get('_route') == 'app_client_new' %} active open {% endif %} ">
@@ -233,21 +184,25 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="nav-item  ">
+                        {% set appointment_routers = ['app_appointment_new', 'app_appointment_list'] %}
+                        <li class="nav-item {% if app.request.get('_route') in appointment_routers %} active open {% endif %} ">
                             <a href="javascript:;" class="nav-link nav-toggle">
                                 <i class="icon-calendar"></i>
                                 <span class="title">Appointment</span>
-                                <span class="arrow"></span>
+                                <span class="{% if app.request.get('_route') in appointment_routers %} selected {% endif %}"></span>
+                                <span class="{% if app.request.get('_route') in appointment_routers %} arrow open {% endif %}"></span>
                             </a>
                             <ul class="sub-menu">
-                                <li class="nav-item  ">
-                                    <a href="ui_colors.html" class="nav-link ">
+                                <li class="nav-item {% if app.request.get('_route') == 'app_appointment_list' %} active open {% endif %}">
+                                    <a href="{{ path('app_appointment_list') }}" class="nav-link ">
                                         <span class="title">Search appointment</span>
+                                        <span class="{% if app.request.get('_route') == 'app_appointment_list' %} selected {% endif %}"></span>
                                     </a>
                                 </li>
-                                <li class="nav-item  ">
-                                    <a href="ui_general.html" class="nav-link ">
+                                <li class="nav-item {% if app.request.get('_route') == 'app_appointment_new' %} active open {% endif %} ">
+                                    <a href="{{ path('app_appointment_new') }}" class="nav-link ">
                                         <span class="title">New Appointment</span>
+                                        <span class="{% if app.request.get('_route') == 'app_appointment_new' %} selected {% endif %}"></span>
                                     </a>
                                 </li>
                             </ul>
@@ -326,6 +281,10 @@
         <script src="{{ asset('assets/global/plugins/moment.min.js') }}"></script>
         <script src="{{ asset('assets/global/plugins/bootstrap-tagsinput/bootstrap-tagsinput.min.js') }}"></script>
         <script src="{{ asset('assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.js') }}"></script>
+        <script src="{{ asset('assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"></script>
+        <script src="{{ asset('assets/global/plugins/bootstrap-timepicker/js/bootstrap-timepicker.min.js') }}"></script>
+        <script src="{{ asset('assets/global/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js') }}"></script>
+        <script src="{{ asset('assets/global/plugins/clockface/js/clockface.js') }}"></script>
         <script src="{{ asset('assets/global/plugins/morris/morris.min.js') }}"></script>
         <script src="{{ asset('assets/global/plugins/morris/raphael-min.js') }}"></script>
         <script src="{{ asset('assets/global/plugins/counterup/jquery.waypoints.min.js') }}"></script>
@@ -360,6 +319,7 @@
         <!-- BEGIN PAGE LEVEL SCRIPTS -->
         <script src="{{ asset('assets/pages/scripts/dashboard.min.js') }}"></script>
         <script src="{{ asset('assets/pages/scripts/components-bootstrap-tagsinput.min.js') }}"></script>
+        <script src="{{ asset('assets/pages/scripts/components-date-time-pickers.min.js') }}"></script>
         <!-- END PAGE LEVEL SCRIPTS -->
         <!-- BEGIN THEME LAYOUT SCRIPTS -->
         <script src="{{ asset('assets/layouts/layout2/scripts/layout.min.js') }}"></script>
