@@ -1,0 +1,15 @@
+app_event_list:
+  path: /events
+  defaults: { _controller: 'ProjectAppBundle:Event:getAppEvents' }
+  methods: GET
+
+app_event_new:
+  path: /event/new
+  defaults: { _controller: 'ProjectAppBundle:Event:newAppEvent' }
+  methods: GET
+
+api_event_new:
+  path:   /event
+  defaults: { _controller: 'ProjectAppBundle:Event:saveAppNewEvent' }
+  methods: POST
+

@@ -6,3 +6,6 @@ project_app_client:
 
 project_app_appointment:
   resource: "@ProjectAppBundle/Resources/config/routing/Appointment.yml"
+
+project_app_event:
+  resource: "@ProjectAppBundle/Resources/config/routing/Event.yml"

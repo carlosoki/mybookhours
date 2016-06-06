@@ -6,28 +6,28 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
-class AppointmentController extends Controller
+class EventController extends Controller
 {
     const FROM_APP = true;
 
     /**
-     * @Template("ProjectAppBundle:Appointment:listAppointments.html.twig")
+     * @Template("ProjectAppBundle:Event:listEvents.html.twig")
      */
-    public function getAppAppointmentsAction()
+    public function getAppEventsAction()
     {
-        return ['appointments' => ''];
+        return ['events' => ''];
     }
 
     /**
-     * @Template("ProjectAppBundle:Appointment:newAppointment.html.twig")
+     * @Template("ProjectAppBundle:Event:newEvent.html.twig")
      * @param Request $request
      *
      * @return array
      */
-    public function newAppAppointmentAction(Request $request)
+    public function newAppEventAction(Request $request)
     {
         return [
-            'appointment' => '',
+            'event' => '',
             'form' => ''
         ];
 
@@ -36,7 +36,7 @@ class AppointmentController extends Controller
     /**
      * @param Request $request
      */
-    public function saveAppNewAppointmentAction(Request $request)
+    public function saveAppNewEventAction(Request $request)
     {
 
     }

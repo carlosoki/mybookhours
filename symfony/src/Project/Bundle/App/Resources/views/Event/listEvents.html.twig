@@ -1,0 +1,23 @@
+{% extends 'ProjectAppBundle::metronic.html.twig' %}
+
+{% block page_title %}
+    <h3 class="page-title"> Search / List of Events
+        <small></small>
+    </h3>
+{% endblock %}
+
+{% block page_breadcrumb %}
+    <li>
+        <i class="icon-home"></i>
+        <a href="{{ path('app_dashboard') }}">Dashboard</a>
+        <i class="fa fa-angle-right"></i>
+        <a href="javascript:;">List Event</a>
+        <i class="fa fa-angle-right"></i>
+    </li>
+{% endblock %}
+
+{% block body -%}
+    {% block content %}
+
+    {% endblock %}
+{% endblock %}
