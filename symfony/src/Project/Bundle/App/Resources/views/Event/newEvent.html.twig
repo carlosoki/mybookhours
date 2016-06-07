@@ -142,7 +142,6 @@
                     <i class="fa fa-refresh"></i>Registry events w/ client </div>
                 <div class="tools">
                     <a href="javascript:;" class="collapse"> </a>
-                    <a href="javascript:;" class="reload"> </a>
                 </div>
             </div>
             <div class="portlet-body form">
@@ -164,6 +163,15 @@
                                 <div class="input-icon">
                                     <i class="fa fa-map-o"></i>
                                     <input type="password" class="form-control input-circle" placeholder="Rose, @ 1/20 Stuart st, Prahan" disabled="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Event ID</label>
+                            <div class="col-md-4">
+                                <div class="input-icon">
+                                    <i class="fa fa-ban"></i>
+                                    <input type="password" class="form-control input-circle" placeholder="I'll be generated after save" disabled="">
                                 </div>
                             </div>
                         </div>
@@ -236,7 +244,7 @@
                         <div class="form-group">
                             <label class="col-md-3 control-label">Travel info</label>
                             <div class="col-md-4">
-                                <button type="button" class="btn btn-circle purple">Add/View</button>
+                                <a href="{{ path('app_event_travel', {'id':'evnt0000544'}) }}" class="btn btn-circle purple"> Add/View </a>
                             </div>
                         </div>
                     </div>
@@ -244,7 +252,7 @@
                         <div class="row">
                             <div class="col-md-offset-3 col-md-9">
                                 <button type="submit" class="btn btn-circle purple">Save</button>
-                                <a href="{{ path('app_appointment_list') }}" class="btn btn-circle purple"> List of events </a>
+                                <a href="{{ path('app_event_list') }}" class="btn btn-circle purple"> List of events </a>
                             </div>
                         </div>
                     </div>
@@ -253,7 +261,5 @@
             </div>
         </div>
         <!-- END EVENT FORM -->
-
-
     {% endblock %}
 {% endblock %}

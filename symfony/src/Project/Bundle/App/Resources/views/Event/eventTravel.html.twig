@@ -1,0 +1,217 @@
+{% extends 'ProjectAppBundle::metronic.html.twig' %}
+
+{% block page_title %}
+    <h3 class="page-title"> Registry of travel info
+        <small></small>
+    </h3>
+{% endblock %}
+
+{% block page_breadcrumb %}
+    <li>
+        <i class="icon-home"></i>
+        <a href="{{ path('app_dashboard') }}">Dashboard</a>
+        <i class="fa fa-angle-right"></i>
+        <a href="javascript:;">Event info</a>
+        <i class="fa fa-angle-right"></i>
+        <a href="javascript:;">Travel info</a>
+        <i class="fa fa-angle-right"></i>
+    </li>
+{% endblock %}
+
+{% block body -%}
+    {% block content %}
+        <!-- START TRAVEL INFO FORM -->
+        <div class="portlet box purple">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-car"></i>Registry travel info</div>
+                <div class="tools">
+                    <a href="javascript:;" class="collapse"> </a>
+                    <a href="javascript:;" class="reload"> </a>
+                </div>
+            </div>
+            <div class="portlet-body form">
+                <!-- BEGIN FORM-->
+                <form action="#" class="form-horizontal">
+                    <div class="form-body">
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Appointment ID</label>
+                            <div class="col-md-4">
+                                <div class="input-icon">
+                                    <i class="fa fa-ban"></i>
+                                    <input type="password" class="form-control input-circle" placeholder="appmt0000123" disabled="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Client</label>
+                            <div class="col-md-4">
+                                <div class="input-icon">
+                                    <i class="fa fa-map-o"></i>
+                                    <input type="password" class="form-control input-circle" placeholder="Rose, @ 1/20 Stuart st, Prahan" disabled="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Event ID</label>
+                            <div class="col-md-4">
+                                <div class="input-icon">
+                                    <i class="fa fa-ban"></i>
+                                    <input type="password" class="form-control input-circle" placeholder="evnt0000544" disabled="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Time</label>
+                            <div class="col-md-4">
+                                <div class="input-icon">
+                                    <span class="help-block">06 April 2016 - 09:00am To 06 April 2016 - 10:00am</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3">Type</label>
+                            <div class="col-md-4">
+                                <select class="bs-select form-control">
+                                    <option>With client</option>
+                                    <option>Between clients</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Km start</label>
+                            <div class="col-md-4">
+                                <div class="input-icon">
+                                    <i class="fa fa-tachometer"></i>
+                                    <input type="text" class="form-control input-circle">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Km end</label>
+                            <div class="col-md-4">
+                                <div class="input-icon">
+                                    <i class="fa fa-tachometer"></i>
+                                    <input type="text" class="form-control input-circle">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Total travelled</label>
+                            <div class="col-md-4">
+                                <div class="input-icon">
+                                    <input type="text" class="form-control input-circle" placeholder="    Km" disabled="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Departure</label>
+                            <div class="col-md-4">
+                                <div class="input-icon">
+                                    <i class="fa fa-map-marker"></i>
+                                    <input type="text" class="form-control input-circle">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Destination</label>
+                            <div class="col-md-4">
+                                <div class="input-icon">
+                                    <i class="fa fa-map-marker"></i>
+                                    <input type="text" class="form-control input-circle">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Purpose</label>
+                            <div class="col-md-4">
+                                <textarea class="form-control input-circle" rows="3"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <div class="row">
+                            <div class="col-md-offset-3 col-md-9">
+                                <button type="submit" class="btn btn-circle purple">Save</button>
+                                <a href="{{ path('app_event_new') }}" class="btn btn-circle purple"> Back to event </a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <!-- END FORM-->
+            </div>
+        </div>
+        <!-- END TRAVEL INFO FORM -->
+
+        <!-- START TABLE RESULT -->
+        <div class="portlet box purple">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-car"></i>List of travel info </div>
+                <div class="tools">
+                    <a href="javascript:;" class="collapse"> </a>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <tbody>
+                        <tr>
+                            <td> 23450 </td>
+                            <td> 23461 </td>
+                            <td> 11 Km </td>
+                            <td> Between clients </td>
+                            <td>
+                                <form name="client_type" method="put" action="">
+                                    <button type="submit" class="btn yellow">
+                                        <i class="fa fa-edit"></i>
+                                    </button>
+                                </form>
+                            </td>
+                            <td>
+                                <form name="client_type" method="DELETE" action="">
+                                    <button type="submit" class="btn red">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td> 23451 </td>
+                            <td> 23468 </td>
+                            <td> 7 Km </td>
+                            <td> With clients </td>
+                            <td>
+                                <form name="client_type" method="put" action="">
+                                    <button type="submit" class="btn yellow">
+                                        <i class="fa fa-edit"></i>
+                                    </button>
+                                </form>
+                            </td>
+                            <td>
+                                <form name="client_type" method="DELETE" action="">
+                                    <button type="submit" class="btn red">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                        </tbody>
+                        <thead>
+                        <tr>
+                            <th> Km start </th>
+                            <th> Km end </th>
+                            <th> Travelled </th>
+                            <th> Type </th>
+                            <th> Edit </th>
+                            <th> Delete </th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- END TABLE RESULT -->
+
+    {% endblock %}
+{% endblock %}

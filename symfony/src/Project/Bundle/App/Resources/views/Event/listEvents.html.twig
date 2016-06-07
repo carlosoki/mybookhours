@@ -18,6 +18,150 @@
 
 {% block body -%}
     {% block content %}
+        <!-- START SEARCH FORM -->
+        <div class="portlet box purple">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-search"></i>Search for events </div>
+                <div class="tools">
+                    <a href="javascript:;" class="collapse"> </a>
+                </div>
+            </div>
+            <div class="portlet-body form">
+                <!-- BEGIN FORM-->
+                <form action="" class="form-horizontal">
+                    <div class="form-body">
+                        <div class="form-group">
+                            <label class="control-label col-md-3">By start</label>
+                            <div class="col-md-4">
+                                <div class="input-group date form_datetime" data-date="{{ "now"|date("Y-m-d H:i:s") }}">
+                                    <input type="text" size="16" readonly class="form-control input-circle">
+                                    <span class="input-group-btn">
+                                        <button class="btn default date-reset input-circle" type="button">
+                                            <i class="fa fa-times"></i>
+                                        </button>
+                                        <button class="btn default date-set input-circle" type="button">
+                                            <i class="fa fa-calendar"></i>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3">By End</label>
+                            <div class="col-md-4">
+                                <div class="input-group date form_datetime" data-date="{{ "now"|date("Y-m-d H:i:s") }}">
+                                    <input type="text" size="16" readonly class="form-control input-circle">
+                                    <span class="input-group-btn">
+                                        <button class="btn default date-reset input-circle" type="button">
+                                            <i class="fa fa-times"></i>
+                                        </button>
+                                        <button class="btn default date-set input-circle" type="button">
+                                            <i class="fa fa-calendar"></i>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">By Client:</label>
+                            <div class="col-md-4">
+                                <div class="input-icon">
+                                    <input type="text" class="form-control" value="Client 1, Client 2" data-role="tagsinput">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">By Staff:</label>
+                            <div class="col-md-4">
+                                <div class="input-icon">
+                                    <i class="fa fa-search"></i>
+                                    <input type="text" class="form-control input-circle" placeholder="Only on staff here.">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <div class="row">
+                            <div class="col-md-offset-3 col-md-9">
+                                <button type="submit" class="btn btn-circle purple"><i class="icon-magnifier"></i> Search</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <!-- END FORM-->
+            </div>
+        </div>
+        <!-- END SEARCH FORM -->
 
+        <!-- START TABLE RESULT -->
+        <div class="portlet box purple">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-refresh"></i>Lists of events </div>
+                <div class="tools">
+                    <a href="javascript:;" class="collapse"> </a>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <tbody>
+                        <tr>
+                            <td>
+                                <input type="radio" name="optionsRadios" id="optionsRadios" checked="">
+                            </td>
+                            <td> evnt0000544 </td>
+                            <td> 06 April 2016 - 09:00am </td>
+                            <td> 06 April 2016 - 10:00am </td>
+                            <td> Rose </td>
+                            <td> Gafney </td>
+                        </tr>
+                        </tbody>
+                        <thead>
+                        <tr>
+                            <th> Select </th>
+                            <th> Appointment ID </th>
+                            <th> Start </th>
+                            <th> End </th>
+                            <th> Client </th>
+                            <th> Staff </th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- END TABLE RESULT -->
+
+        <!-- START EVENT DETAILS -->
+        <div class="portlet box purple">
+            <div class="portlet-title">
+                <div class="caption">
+                    <i class="fa fa-folder-open-o"></i>Event Details </div>
+                <div class="tools">
+                    <a href="javascript:;" class="collapse"> </a>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <dl>
+                    <dt>Event ID: evnt0000544</dt>
+                    <dd>Field staff assigned: Gafney</dd>
+                    <dd>Client: Rose, @ 1/20 Stuart st, Prahan</dd>
+                    <dt>From: 06 Apr 16 9:00am To 10:00am</dt>
+                    <dt>Tasks:</dt>
+                    <dd> - Dinning together</dd>
+                    <dd> - Shower</dd>
+                    <dt>Notes:</dt>
+                    <dd> - The client refuses to take shower</dd>
+                    <dt>Travel info:</dt>
+                    <dd> - Travel between clients, Km start: 23450, Km end: 23461</dd>
+                    <dd> - Travel with client, Km start: 23461, Km end: 23468</dd>
+                    <dd> - Travel with client between her house to Colles and then back home.</dd>
+                    <dd> - Total travelled: 18 Km.</dd>
+                </dl>
+            </div>
+        </div>
+        <!-- END EVENT DETAILS -->
     {% endblock %}
 {% endblock %}

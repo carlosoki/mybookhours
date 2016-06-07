@@ -8,8 +8,14 @@ app_event_new:
   defaults: { _controller: 'ProjectAppBundle:Event:newAppEvent' }
   methods: GET
 
-api_event_new:
+app_event_new_save:
   path:   /event
   defaults: { _controller: 'ProjectAppBundle:Event:saveAppNewEvent' }
   methods: POST
+
+app_event_travel:
+  path: /event/{id}/travel
+  defaults: { _controller: 'ProjectAppBundle:EventTravel:newAppEventTravel' }
+  methods: GET
+
 

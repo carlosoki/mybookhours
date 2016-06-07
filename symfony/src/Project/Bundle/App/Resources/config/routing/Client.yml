@@ -8,7 +8,7 @@ app_client_new:
   defaults: { _controller: 'ProjectAppBundle:Client:newAppClient' }
   methods: GET
 
-api_client_new:
+app_client_new_save:
   path:   /client
   defaults: { _controller: 'ProjectAppBundle:Client:saveAppNewClient' }
   methods: POST

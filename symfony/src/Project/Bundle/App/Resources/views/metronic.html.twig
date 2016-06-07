@@ -207,21 +207,25 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="nav-item  ">
+                        {% set event_routers = ['app_event_new', 'app_event_list', 'app_event_travel'] %}
+                        <li class="nav-item {% if app.request.get('_route') in event_routers %} active open {% endif %} ">
                             <a href="javascript:;" class="nav-link nav-toggle">
                                 <i class="icon-refresh"></i>
                                 <span class="title">Events</span>
-                                <span class="arrow"></span>
+                                <span class="{% if app.request.get('_route') in event_routers %} selected {% endif %}"></span>
+                                <span class="{% if app.request.get('_route') in event_routers %} arrow open {% endif %}"></span>
                             </a>
                             <ul class="sub-menu">
-                                <li class="nav-item  ">
-                                    <a href="ui_colors.html" class="nav-link ">
+                                <li class="nav-item {% if app.request.get('_route') == 'app_event_list' %} active open {% endif %}">
+                                    <a href="{{ path('app_event_list') }}" class="nav-link ">
                                         <span class="title">Search events</span>
+                                        <span class="{% if app.request.get('_route') == 'app_event_list' %} selected {% endif %}"></span>
                                     </a>
                                 </li>
-                                <li class="nav-item  ">
-                                    <a href="ui_general.html" class="nav-link ">
-                                        <span class="title">General Components</span>
+                                <li class="nav-item {% if app.request.get('_route') == 'app_event_new' %} active open {% endif %}">
+                                    <a href="{{ path('app_event_new') }}" class="nav-link ">
+                                        <span class="title">New event</span>
+                                        <span class="{% if app.request.get('_route') == 'app_event_new' %} selected {% endif %}"></span>
                                     </a>
                                 </li>
                             </ul>
