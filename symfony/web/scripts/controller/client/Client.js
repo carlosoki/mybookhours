@@ -15,12 +15,13 @@ $().ready(
                 },
                 address: "Address is mandatory"
             },
-            errorClass:'has-error',
+            errorClass:'required',
+            errorElement: 'span',
             highlight: function (element, errorClass) {
-                $(element).parents('.form-group').addClass(errorClass);
+                $(element).parents('.form-group').addClass('has-error');
             },
             unhighlight: function (element, errorClass) {
-                $(element).parents('.form-group').removeClass(errorClass);
+                $(element).parents('.form-group').removeClass('has-error');
             }
         });
 
