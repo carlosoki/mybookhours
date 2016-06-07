@@ -6,10 +6,5 @@ app_client_list:
 app_client_new:
   path: /client/new
   defaults: { _controller: 'ProjectAppBundle:Client:newAppClient' }
-  methods: GET
-
-app_client_new_save:
-  path:   /client
-  defaults: { _controller: 'ProjectAppBundle:Client:saveAppNewClient' }
-  methods: POST
+  methods: [GET, POST]
 

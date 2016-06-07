@@ -24,7 +24,7 @@ $().ready(
                 $(element).parents('.form-group').removeClass('has-error');
             }
         });
-
+        Ajaxify();
     }
 );
 
