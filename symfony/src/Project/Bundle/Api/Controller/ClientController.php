@@ -91,14 +91,20 @@ class ClientController extends BaseController
      * @param Request $request
      * @return \FOS\RestBundle\View\View
      */
-    public function NewApiClientAction(Request $request)
+    public function newApiClientAction(Request $request, bool $fromApp = null)
     {
         $client = new Client();
         $form = $this->createForm(ClientType::class, $client);
 
+        if ($fromApp) {
+            $router = 'app_client_new';
+        } else {
+            $router = 'api_client';
+        }
+
         return $this->processForm(
             $request, self::FORM_NAME, $form, self::CLIENT_REPO,
-            $client, 'client', ['client'], Response::HTTP_CREATED
+            $client, $router, ['client'], Response::HTTP_CREATED
         );
     }
 
@@ -118,18 +124,24 @@ class ClientController extends BaseController
      * @param $id
      * @return \FOS\RestBundle\View\View
      */
-    public function UpdateApiClientAction(Request $request, $id)
+    public function UpdateApiClientAction(Request $request, $id, bool $fromApp = null)
     {
         $client = $this->getRepo(self::CLIENT_REPO)->find($id);
 
         if (!$client) {
             throw new NotFoundHttpException('Client id:'.$id.' does not exist');
         }
+        if ($fromApp) {
+            $router = 'app_client_new';
+        } else {
+            $router = 'api_client';
+        }
+
         $form = $this->createForm(ClientType::class, $client, ['method' => $request->getMethod()]);
 
         return $this->processForm(
             $request, self::FORM_NAME, $form, self::CLIENT_REPO,
-            $client, 'client', ['client'], Response::HTTP_OK
+            $client, $router, ['client'], Response::HTTP_OK
         );
     }
 }

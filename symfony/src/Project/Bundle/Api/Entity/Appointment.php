@@ -11,7 +11,7 @@ use JMS\Serializer\Annotation AS Serializer;
  * @package Project\Bundle\Api\Entity
  *
  * @ORM\Entity(repositoryClass="Project\Bundle\Api\Entity\Repository\ClientRepository")
- * @ORM\Table(name="client")
+ * @ORM\Table(name="appointment")
  * @ORM\HasLifecycleCallbacks()
  *
  */

@@ -23,10 +23,6 @@ use JMS\Serializer\Annotation AS Serializer;
  */
 class Client
 {
-    const CASUAL = 'casual';
-    const PART_TIME = 'part-time';
-    const FULL_TIME = 'full-time';
-
     /**
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -42,25 +38,17 @@ class Client
     private $name;
 
     /**
-     * @ORM\Column(name="type_contract", type="string", nullable=true)
-     *
-     * @Assert\Choice(
-     *  choices = {
-     *      project\Bundle\Api\Entity\client::CASUAL,
-     *      project\Bundle\Api\Entity\client::PART_TIME,
-     *      project\Bundle\Api\Entity\client::FULL_TIME,
-     *
-     *  })
+     * @ORM\Column(name="address", type="string")
      *
      * @Serializer\Groups({"client", "client_list" })
      */
-    private $typeContract;
+    private $address;
 
     /**
-     * @ORM\Column(name="rate", type="decimal", scale=2, nullable=true)
+     * @ORM\Column(name="about_client", type="text", nullable=true)
      * @Serializer\Groups({"client", "client_list" })
      */
-    private $rate;
+    private $aboutClient;
 
     /**
      * @ORM\Column(name="is_inactive", type="boolean", nullable=true, options={"default" = 0})
@@ -98,18 +86,18 @@ class Client
     /**
      * @return mixed
      */
-    public function getTypeContract()
+    public function getAddress()
     {
-        return $this->typeContract;
+        return $this->address;
     }
 
     /**
-     * @param mixed $typeContract
+     * @param mixed $address
      * @return Client
      */
-    public function setTypeContract($typeContract)
+    public function setAddress($address)
     {
-        $this->typeContract = $typeContract;
+        $this->address = $address;
 
         return $this;
     }
@@ -117,18 +105,18 @@ class Client
     /**
      * @return mixed
      */
-    public function getRate()
+    public function getAboutClient()
     {
-        return $this->rate;
+        return $this->aboutClient;
     }
 
     /**
-     * @param mixed $rate
+     * @param mixed $aboutClient
      * @return Client
      */
-    public function setRate($rate)
+    public function setAboutClient($aboutClient)
     {
-        $this->rate = $rate;
+        $this->aboutClient = $aboutClient;
 
         return $this;
     }
