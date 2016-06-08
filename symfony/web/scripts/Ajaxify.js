@@ -15,40 +15,18 @@ function Ajaxify( form, obj ) {
         url: action,
         beforeSend: function () {
             console.log('entrou BEFORE SEND...');
-            Message.setFadeOut(false).msgInfo('Loading..', form);
             General.scrollTo(form);
         },
         success: function (response) {
             console.log('IN SUCESSS...');
-            //Message.clearMessages(form);
 
             if (obj && obj.callback) {
+
                 response.form = form;
                 General.execFunction(obj.callback, response);
-            }
-
-            Form.showErrorsForm(form, response.errors);
-
-            if (response.fields && response.fields.length) {
-
-                for (id in response.fields) {
-
-                    var ele = $('#' + response.fields[id]);
-                    ele.closest('.forms-group').addClass('has-error');
-                }
-            }
-
-            if (!response.status) {
-
-                if (General.empty(response.description))
-                    Message.msgError('Something went wrong', form);
-
-            } else if (General.empty(obj.nomsg)) {
-                Message.msgSuccess('Operation was a success', form);
-            }
-
-            if (!General.empty(response.description)) {
-                Message.msgError(response.description, form);
+                $('#alert').fadeIn();
+                form[0].reset();
+                $('#alert').delay(3000).fadeOut('slow');
             }
         },
         error: function (jqXHR, textStatus, errorThrown) {
