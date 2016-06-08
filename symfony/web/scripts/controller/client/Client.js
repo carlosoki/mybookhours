@@ -1,6 +1,8 @@
 $().ready(
     function(){
-        $('#client_type').validate({
+        var formElement = $('#client_type');
+
+        formElement.validate({
             rules: {
                 name: {
                     required: true,
@@ -24,7 +26,8 @@ $().ready(
                 $(element).parents('.form-group').removeClass('has-error');
             }
         });
-        Ajaxify();
+
+        Ajaxify(formElement);
     }
 );
 

@@ -1,4 +1,4 @@
-function Ajaxify() {
+function Ajaxify(formElement) {
     $('body').on('submit', '.ajaxForm', function (e) {
         console.log('just here.');
         e.preventDefault();
@@ -12,7 +12,7 @@ function Ajaxify() {
                 console.log('data saved.');
                 if (typeof data.message !== 'undefined') {
                     $('#alert').fadeIn();
-                    $('#client_type')[0].reset();
+                    formElement[0].reset();
                     $('#alert').delay(3000).fadeOut('slow');
                 }
             })
