@@ -1,14 +1,29 @@
 $().ready(
-    function(){
-        var formElement = $('#client_type');
+    function (){
+        var form  = $( '#client_type' );
 
-        formElement.validate({
+        submit = function(){
+            console.log('submit function...');
+            var obj = {
+                callback: function( response )
+                {
+                    if ( response.status )
+                        General.go( Routing.generate('pattern') );
+
+                }
+            };
+
+            Ajaxify( form, obj );
+            return false;
+        };
+
+        form.validate({
             rules: {
-                name: {
-                    required: true,
-                    minlength: 2
-                },
-                address: "required"
+                // name: {
+                //     required: true,
+                //     minlength: 2
+                // },
+                // address: "required"
             },
             messages: {
                 name: {
@@ -24,10 +39,9 @@ $().ready(
             },
             unhighlight: function (element, errorClass) {
                 $(element).parents('.form-group').removeClass('has-error');
-            }
+            },
+            submitHandler: submit
         });
-
-        Ajaxify(formElement);
     }
 );
 

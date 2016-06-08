@@ -9,7 +9,9 @@
 namespace Project\Bundle\Api\Controller;
 
 use FOS\RestBundle\Controller\FOSRestController;
+use JmesPath\Tests\_TestClass;
 use JMS\Serializer\SerializationContext;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -30,20 +32,7 @@ class BaseController extends FOSRestController
         $request->request->replace($wrapperParams);
     }
 
-    public function renderSerializedView(array $groupSerializer, $object = null, $statusCode = null, $url = null)
-    {
-        if (!$statusCode) {
-            $statusCode = Response::HTTP_OK;
-        }
-
-        $view = $this->view($object, $statusCode)->setHeader('Location', $url);
-        $context = SerializationContext::create()->setGroups($groupSerializer);
-        $view->setSerializationContext($context);
-
-        return $view;
-    }
-
-    public function processForm(Request $request, $formName, $form, $repoName, $object, $routeName, array $groupSerializer, $statusCode = null )
+    public function processForm(Request $request, $formName, $form, $repoName, $object, $routeName, array $groupSerializer, $fromApp, $statusCode = null )
     {
         $this->wrapRequest($request, $formName);
 
@@ -53,11 +42,49 @@ class BaseController extends FOSRestController
             $this->getRepo($repoName)->save($object);
             
             $url = $this->generateUrl($routeName, ['id' => $object->getId()]);
+            
+            return $this->renderSerializedView($groupSerializer, $fromApp, $object, $statusCode, $url);
 
-            return $this->renderSerializedView($groupSerializer, $object, $statusCode, $url);
         } else {
+            if ($fromApp) {
+                $serializer = $this->get('jms_serializer');
+                $data =  $serializer->serialize($form, 'json');
+
+                return new JsonResponse(
+                    [
+                        'message' => 'error',
+                        'data' => $data
+                    ],
+                    400
+                );
+            }
             return $form;
         }
+    }
+
+    public function renderSerializedView(array $groupSerializer, $fromApp, $object = null, $statusCode = null, $url = null)
+    {
+        if (!$statusCode) {
+            $statusCode = Response::HTTP_OK;
+        }
+
+        $data = $this->view($object, $statusCode)->setHeader('Location', $url);
+        $context = SerializationContext::create()->setGroups($groupSerializer);
+        $data->setSerializationContext($context);
+
+        if ($fromApp) {
+            $serializer = $this->get('jms_serializer');
+            $data =  $serializer->serialize($object, 'json', $context);
+
+            return new JsonResponse(
+                [
+                    'message' => 'success',
+                    'data' => $data
+                ],
+                $statusCode
+            );
+        }
+        return $data;
     }
 }
 

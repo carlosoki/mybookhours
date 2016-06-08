@@ -33,12 +33,17 @@ class Client
 
     /**
      * @ORM\Column(name="name", type="string")
+     *
+     * @Assert\NotNull()
+     * 
      * @Serializer\Groups({"client", "clientLog", "client_list" })
      */
     private $name;
 
     /**
      * @ORM\Column(name="address", type="string")
+     *
+     * @Assert\NotNull()
      *
      * @Serializer\Groups({"client", "client_list" })
      */

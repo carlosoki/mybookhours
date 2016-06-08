@@ -91,10 +91,12 @@ class ClientController extends BaseController
      * @param Request $request
      * @return \FOS\RestBundle\View\View
      */
-    public function newApiClientAction(Request $request, bool $fromApp = null)
+    public function newApiClientAction(Request $request, bool $fromApp = null, $form = null, Client $client = null)
     {
-        $client = new Client();
-        $form = $this->createForm(ClientType::class, $client);
+        if(!$form){
+            $client = new Client();
+            $form = $this->createForm(ClientType::class, $client);
+        }
 
         if ($fromApp) {
             $router = 'app_client_new';
@@ -104,7 +106,7 @@ class ClientController extends BaseController
 
         return $this->processForm(
             $request, self::FORM_NAME, $form, self::CLIENT_REPO,
-            $client, $router, ['client'], Response::HTTP_CREATED
+            $client, $router, ['client'], $fromApp, Response::HTTP_CREATED
         );
     }
 

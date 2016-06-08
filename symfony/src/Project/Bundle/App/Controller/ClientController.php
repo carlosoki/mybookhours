@@ -36,45 +36,36 @@ class ClientController extends ApiClientController
         $client = new Client();
         $form = $this->createForm(ClientType::class, $client);
 
-        if ( $request->isMethod( 'POST' ) ) {
+        if ($request->isMethod('POST')) {
 
-            $baseController = new BaseController();
-            $baseController->wrapRequest($request, 'client_type');
+            $client = $this->newApiClientAction($request, self::FROM_APP, $form, $client);
+            return $client;
 
-            $form->handleRequest($request);
+//            if ($client->getData()) {
+//                $response = new JsonResponse(
+//                    [
+//                        'message' => 'Success',
+//                        'client'    => $client
+//                    ],
+//                    200
+//                );
+//            } else {
+//                $response = new JsonResponse(
+//                    [
+//                        'message' => 'Error',
+//                        'form' => $this->renderView(
+//                            'ProjectAppBundle:Client:newClient.html.twig',
+//                            [
+//                                'client' => $client,
+//                                'form' => $form->createView(),
+//                            ]
+//                        )
+//                    ],
+//                    400
+//                );
+//            }
+//            return $response;
 
-            if ($form->isValid()) {
-                $this->get('api.repository.client')->save($client);
-
-                $response = new JsonResponse(
-                    [
-                        'message' => 'Success',
-                        'form' => $this->renderView(
-                            'ProjectAppBundle:Client:newClient.html.twig',
-                            [
-                                'form' => $form->createView(),
-                            ]
-                        )
-                    ],
-                    200
-                );
-            } else {
-                $response = new JsonResponse(
-                    [
-                        'message' => 'Error',
-                        'form' => $this->renderView(
-                            'ProjectAppBundle:Client:newClient.html.twig',
-                            [
-                                'client' => $client,
-                                'form' => $form->createView(),
-                            ]
-                        )
-                    ],
-                    400
-                );
-            }
-
-            return $response;
         }
 
         return [
