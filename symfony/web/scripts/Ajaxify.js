@@ -14,11 +14,9 @@ function Ajaxify( form, obj ) {
         dataType: 'json',
         url: action,
         beforeSend: function () {
-            console.log('entrou BEFORE SEND...');
             General.scrollTo(form);
         },
         success: function (response) {
-            console.log('IN SUCESSS...');
 
             if (obj && obj.callback) {
 
@@ -30,7 +28,9 @@ function Ajaxify( form, obj ) {
             }
         },
         error: function (jqXHR, textStatus, errorThrown) {
-            console.log('entrou aqui...');
+            console.log('error...');
+            console.log(jqXHR.responseJSON);
+
             var jsonReturn = null;
             if (typeof jqXHR.responseJSON !== 'undefined') {
                 jsonReturn = jqXHR.responseJSON;
