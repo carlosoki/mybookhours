@@ -145,4 +145,34 @@ class ClientController extends BaseController
             $client, 'api_client', ['client'], $fromApp, Response::HTTP_OK
         );
     }
+
+    /**
+     * Delete an Client by id.
+     *
+     * @ApiDoc(
+     *   resource = true,
+     *   statusCodes={
+     *     204 = "Returned when successful deleted",
+     *     404 = "Returned when the opportunity is not found",
+     *     400 = "Returned when validation fails"
+     *   }
+     * )
+     *
+     * @param $id
+     *
+     * @return string
+     */
+    public function deleteApiClientAction($id)
+    {
+        $client = $this->getRepo(self::CLIENT_REPO)->find($id);
+
+        if (!$client) {
+            throw new NotFoundHttpException('Client id:'.$id.' does not exist');
+        }
+
+        $this->getRepo(self::CLIENT_REPO)->delete($client);
+
+        return $this->renderSerializedView(['client'], null, null, Response::HTTP_NO_CONTENT, null);
+
+    }
 }

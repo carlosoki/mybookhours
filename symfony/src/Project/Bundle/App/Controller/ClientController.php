@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 class ClientController extends ApiClientController
 {
     const FROM_APP = true;
+
     /**
      * @Template("ProjectAppBundle:Client:listClients.html.twig")
      */
@@ -19,11 +20,10 @@ class ClientController extends ApiClientController
     {
         $clients = $this->getApiClientsAction(self::FROM_APP);
 
-        return [
-            'clients' => $clients
-        ];
+        return ['clients' => $clients];
 
     }
+
     /**
      * @Template("ProjectAppBundle:Client:newClient.html.twig")
      * @param Request $request
@@ -69,6 +69,5 @@ class ClientController extends ApiClientController
             'client' => $client,
             'form' => $form
         ];
-        
     }
 }

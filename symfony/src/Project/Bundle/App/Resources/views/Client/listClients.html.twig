@@ -85,11 +85,9 @@
                                     </a>
                                 </td>
                                 <td>
-                                    <form name="client_type" method="DELETE" action="">
-                                        <button type="submit" class="btn red">
-                                            <i class="fa fa-trash"></i>
-                                        </button>
-                                    </form>
+                                    <a action="{{ path('api_client_delete', { 'id': client.id }) }}" redirect="{{ path('app_client_list') }}" class="delete btn red">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
                                 </td>
                             </tr>
                         {% endfor %}
@@ -110,5 +108,7 @@
     {% endblock %}
 
 {% endblock %}
-
+{% block extrascripts %}
+    <script src="{{ asset('scripts/controller/client/clientDelete.js') }}"></script>
+{% endblock extrascripts %}
 

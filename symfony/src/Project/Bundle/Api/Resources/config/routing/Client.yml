@@ -21,3 +21,10 @@ api_client_edit:
   methods: [PUT,PATCH]
   requirements:
     id:  \d+
+
+api_client_delete:
+  path: /client/{id}
+  defaults: { _controller: 'ProjectApiBundle:Client:deleteApiClient' }
+  methods: [DELETE]
+  requirements:
+    id:  \d+
