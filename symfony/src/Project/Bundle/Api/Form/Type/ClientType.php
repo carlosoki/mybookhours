@@ -5,7 +5,7 @@ namespace Project\Bundle\Api\Form\Type;
 use Project\Bundle\Api\Entity\Client;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\MoneyType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -20,7 +20,7 @@ class ClientType extends AbstractType
     {
         $builder->add('name', TextType::class, ['required' => true])
             ->add('address', TextType::class, ['required' => true])
-            ->add('aboutClient', TextType::class, ['required' => false])
+            ->add('aboutClient', TextareaType::class, ['required' => false])
             ->add('isInactive', CheckboxType::class, ['required' => false])
             ->getForm();
     }

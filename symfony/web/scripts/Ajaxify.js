@@ -1,4 +1,4 @@
-function Ajaxify( form, obj ) {
+function Ajaxify( form, obj, formName ) {
     if (General.empty(obj.data))
         pars = $(form).serialize();
     else
@@ -16,6 +16,7 @@ function Ajaxify( form, obj ) {
         beforeSend: function () {
             General.scrollTo(form);
         },
+
         success: function (response) {
 
             if (obj && obj.callback) {
@@ -27,6 +28,7 @@ function Ajaxify( form, obj ) {
                 $('#alert').delay(3000).fadeOut('slow');
             }
         },
+
         error: function (jqXHR, textStatus, errorThrown) {
             var jsonReturn = null;
             if (typeof jqXHR.responseJSON !== 'undefined') {
@@ -39,10 +41,10 @@ function Ajaxify( form, obj ) {
             $(form).find('.form-group.has-error').removeClass('.has-error');
 
             $.each(jsonReturn.data,
-                function(field, errors)
-                {
-                    var fieldElement = $('#'+ field, form);
+                function(field, errors){
+                    var fieldElement = $('#'+formName+'_'+field, form);
                     fieldElement.parents('.form-group').addClass('has-error');
+
                     errors.forEach(
                         function(e){
                             var span = $('<span>');
@@ -52,7 +54,7 @@ function Ajaxify( form, obj ) {
                     );
                 }
             );
-
         }
+
     });
 }

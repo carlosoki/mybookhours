@@ -28,7 +28,7 @@
             </div>
             <div class="portlet-body form">
                 <!-- BEGIN FORM-->
-                <form action="{{ path('app_client_new') }}" id="client_type" class="ajaxForm form-horizontal" method="post" novalidate>
+                <form action="{{ path('app_client_new') }}" id="{{ form.vars.id }}" class="ajaxForm form-horizontal" method="post" novalidate>
                     <div class="form-body">
                         <div id="alert" class="alert alert-success display-hide">
                             <button class="close" data-close="alert"></button> Your form was saved successful!
@@ -37,32 +37,79 @@
                             <button class="close" data-close="alert"></button>
                         </div>
                         <div class="form-group">
-                            <label class="col-md-3 control-label">Name<span style="color:red"> * </span></label>
+                            {{
+                                form_label(form.name, 'Name', {
+                                    'label_attr': {'class': 'col-md-3 control-label'}
+                                })
+                            }}
                             <div class="col-md-4">
-                                <input type="text" id="name" name="name" class="form-control input-circle" placeholder="Enter client name">
+                                {{
+                                    form_widget(form.name, {
+                                        'attr': {
+                                            'class': 'form-control input-circle',
+                                            'placeholder': 'Enter client name'
+                                        }
+                                    })
+                                }}
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-md-3 control-label">Address <span style="color:red"> * </span></label>
+                            {{
+                                form_label(form.address, 'Address', {
+                                    'label_attr': {'class': 'col-md-3 control-label'}
+                                })
+                            }}
                             <div class="col-md-4">
                                 <div class="input-icon">
                                     <i class="fa fa-map-o"></i>
-                                    <input type="text" id="address" name="address" class="form-control input-circle" placeholder="Client full address">
+                                    {{
+                                    form_widget(form.address, {
+                                        'attr': {
+                                            'class': 'form-control input-circle',
+                                            'placeholder': 'Client full address'
+                                        }
+                                    })
+                                    }}
                                     <span class="help-block"> Enter the client's full addres. </span>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-3">Active</label>
+                            {{
+                            form_label(form.isInactive, 'Active', {
+                                'label_attr': {'class': 'col-md-3 control-label'}
+                            })
+                            }}
                             <div class="col-md-4">
-                                <input type="checkbox" class="make-switch" id="isInactive" name="isInactive" data-off-color="default"
-                                       data-on-color="danger" data-size="small" data-on-text="No" data-off-text="Yes">
+                                {{
+                                    form_widget(form.isInactive, {
+                                        'attr': {
+                                            'class': 'make-switch',
+                                            'data-off-color' : 'default',
+                                            'data-on-color' : 'danger',
+                                            'data-size': 'small',
+                                            'data-on-text': 'No',
+                                            'data-off-text': 'Yes'
+                                        }
+                                    })
+                                }}
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-md-3 control-label">Info about client</label>
+                            {{
+                            form_label(form.aboutClient, 'Name', {
+                                'label_attr': {'class': 'col-md-3 control-label'}
+                            })
+                            }}
                             <div class="col-md-4">
-                                <textarea class="form-control input-circle" name="aboutClient" id="aboutClient" rows="3"></textarea>
+                                {{
+                                form_widget(form.aboutClient, {
+                                    'attr': {
+                                        'class': 'form-control input-circle',
+                                        'rows': '3'
+                                    }
+                                })
+                                }}
                                 <span class="help-block"> Short description about the client. </span>
                             </div>
                         </div>

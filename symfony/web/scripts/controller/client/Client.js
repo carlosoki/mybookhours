@@ -1,6 +1,7 @@
 $().ready(
     function (){
-        var form  = $( '#client_type' );
+        var formName = 'client_type';
+        var form  = $( '#'+formName );
 
         submit = function(){
             var obj = {
@@ -12,24 +13,24 @@ $().ready(
                 }
             };
 
-            Ajaxify( form, obj );
+            Ajaxify( form, obj, formName );
             return false;
         };
 
         form.validate({
             rules: {
-                name: {
+                'client_type[name]': {
                     required: true,
                     minlength: 2
                 },
-                address: "required"
+                'client_type[address]': "required"
             },
             messages: {
-                name: {
+                'client_type[name]': {
                     required: "Client name is mandatory",
                     minlength: "Name need at least 2 chars"
                 },
-                address: "Address is mandatory"
+                'client_type[address]': "Address is mandatory"
             },
             errorClass:'required',
             errorElement: 'span',

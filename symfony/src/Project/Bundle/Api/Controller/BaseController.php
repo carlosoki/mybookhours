@@ -35,7 +35,9 @@ class BaseController extends FOSRestController
 
     public function processForm(Request $request, $formName, $form, $repoName, $object, $routeName, array $groupSerializer, $fromApp, $statusCode = null )
     {
-        $this->wrapRequest($request, $formName);
+        if(!$fromApp){
+            $this->wrapRequest($request, $formName);
+        }
 
         $form->handleRequest($request);
 
