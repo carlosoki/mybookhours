@@ -68,7 +68,7 @@
                         {% for client in clients %}
                             <tr>
                                 <td> {{ client.name }} </td>
-                                <td> - </td>
+                                <td> {{ client.address }} </td>
                                 <td> {% if client.isInactive %}
                                         <a class="disabled btn purple"> No
                                             <i class="fa fa-ok"></i>
@@ -80,11 +80,9 @@
                                     {% endif %}
                                 </td>
                                 <td>
-                                    <form name="client_type" method="put" action="">
-                                        <button type="submit" class="btn yellow">
-                                            <i class="fa fa-edit"></i>
-                                        </button>
-                                    </form>
+                                    <a href="{{ path('app_client_edit', {'id': client.id}) }}" class="btn yellow">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
                                 </td>
                                 <td>
                                     <form name="client_type" method="DELETE" action="">

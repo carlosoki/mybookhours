@@ -2,6 +2,7 @@ $().ready(
     function (){
         var formName = 'client_type';
         var form  = $( '#'+formName );
+        var formMethod = $(form).attr('method');
 
         submit = function(){
             var obj = {
@@ -13,7 +14,7 @@ $().ready(
                 }
             };
 
-            Ajaxify( form, obj, formName );
+            Ajaxify( form, obj, formName, formMethod );
             return false;
         };
 

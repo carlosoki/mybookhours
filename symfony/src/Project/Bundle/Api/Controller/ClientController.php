@@ -126,24 +126,23 @@ class ClientController extends BaseController
      * @param $id
      * @return \FOS\RestBundle\View\View
      */
-    public function UpdateApiClientAction(Request $request, $id, bool $fromApp = null)
+    public function updateApiClientAction(Request $request, $id, bool $fromApp = null)
     {
         $client = $this->getRepo(self::CLIENT_REPO)->find($id);
 
         if (!$client) {
             throw new NotFoundHttpException('Client id:'.$id.' does not exist');
         }
+
         if ($fromApp) {
-            $router = 'app_client_new';
-        } else {
-            $router = 'api_client';
+            return $client;
         }
 
         $form = $this->createForm(ClientType::class, $client, ['method' => $request->getMethod()]);
 
         return $this->processForm(
             $request, self::FORM_NAME, $form, self::CLIENT_REPO,
-            $client, $router, ['client'], Response::HTTP_OK
+            $client, 'api_client', ['client'], $fromApp, Response::HTTP_OK
         );
     }
 }

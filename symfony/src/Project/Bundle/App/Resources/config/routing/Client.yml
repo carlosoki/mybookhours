@@ -8,3 +8,9 @@ app_client_new:
   defaults: { _controller: 'ProjectAppBundle:Client:newAppClient' }
   methods: [GET, POST]
 
+app_client_edit:
+  path: /client/{id}
+  defaults: { _controller: 'ProjectAppBundle:Client:updateAppClient' }
+  methods: [GET, PUT]
+  requirements:
+    id:  \d+

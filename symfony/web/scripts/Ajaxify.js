@@ -1,4 +1,4 @@
-function Ajaxify( form, obj, formName ) {
+function Ajaxify( form, obj, formName, formMethod ) {
     if (General.empty(obj.data))
         pars = $(form).serialize();
     else
@@ -8,8 +8,10 @@ function Ajaxify( form, obj, formName ) {
     if (obj.action)
         action = obj.action;
 
+    console.log('Before ajax');
+
     $.ajax({
-        type: 'POST',
+        type: formMethod,
         data: pars,
         dataType: 'json',
         url: action,
@@ -20,16 +22,22 @@ function Ajaxify( form, obj, formName ) {
         success: function (response) {
 
             if (obj && obj.callback) {
-
                 response.form = form;
+
                 General.execFunction(obj.callback, response);
+
                 $('#alert').fadeIn();
-                form[0].reset();
+
+                if (formMethod === 'post'){
+                    form[0].reset();
+                }
+
                 $('#alert').delay(3000).fadeOut('slow');
             }
         },
 
         error: function (jqXHR, textStatus, errorThrown) {
+            console.log('get in ERROR...');
             var jsonReturn = null;
             if (typeof jqXHR.responseJSON !== 'undefined') {
                 jsonReturn = jqXHR.responseJSON;
