@@ -47,7 +47,7 @@ class ClientController extends BaseController
 
         $url = $this->generateUrl('api_client_list');
 
-        return $this->renderSerializedView(['client_list'], $client, null, $url);
+        return $this->renderSerializedView(['client_list'], $fromApp, $client, null, $url);
     }
 
     /**
@@ -64,7 +64,7 @@ class ClientController extends BaseController
      * @param $id
      * @return \FOS\RestBundle\View\View
      */
-    public function getApiClientAction($id)
+    public function getApiClientAction($id, bool $fromApp = null)
     {
         $client = $this->getRepo(self::CLIENT_REPO)->find($id);
 
@@ -73,7 +73,7 @@ class ClientController extends BaseController
         }
         $url = $this->generateUrl('api_client', ['id' => $client->getId()]);
 
-        return $this->renderSerializedView(['client'], $client, null, $url);
+        return $this->renderSerializedView(['client'], $fromApp, $client, null, $url);
     }
 
     /**

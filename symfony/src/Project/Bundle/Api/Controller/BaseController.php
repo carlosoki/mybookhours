@@ -86,6 +86,7 @@ class BaseController extends FOSRestController
                 $statusCode
             );
         }
+
         return $data;
     }
 }
