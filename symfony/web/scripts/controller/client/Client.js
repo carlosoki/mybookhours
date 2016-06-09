@@ -3,7 +3,6 @@ $().ready(
         var form  = $( '#client_type' );
 
         submit = function(){
-            console.log('submit function...');
             var obj = {
                 callback: function( response )
                 {
@@ -19,11 +18,11 @@ $().ready(
 
         form.validate({
             rules: {
-                // name: {
-                //     required: true,
-                //     minlength: 2
-                // },
-                // address: "required"
+                name: {
+                    required: true,
+                    minlength: 2
+                },
+                address: "required"
             },
             messages: {
                 name: {

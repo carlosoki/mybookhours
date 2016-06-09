@@ -60,7 +60,7 @@ class ExceptionWrapperHandler implements ExceptionWrapperHandlerInterface
         return $output;
     }
 
-    private function getFormErrors(Form $form)
+    public function getFormErrors(Form $form)
     {
         $errors = [];
 

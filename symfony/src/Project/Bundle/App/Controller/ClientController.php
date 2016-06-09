@@ -41,31 +41,6 @@ class ClientController extends ApiClientController
             $client = $this->newApiClientAction($request, self::FROM_APP, $form, $client);
             return $client;
 
-//            if ($client->getData()) {
-//                $response = new JsonResponse(
-//                    [
-//                        'message' => 'Success',
-//                        'client'    => $client
-//                    ],
-//                    200
-//                );
-//            } else {
-//                $response = new JsonResponse(
-//                    [
-//                        'message' => 'Error',
-//                        'form' => $this->renderView(
-//                            'ProjectAppBundle:Client:newClient.html.twig',
-//                            [
-//                                'client' => $client,
-//                                'form' => $form->createView(),
-//                            ]
-//                        )
-//                    ],
-//                    400
-//                );
-//            }
-//            return $response;
-
         }
 
         return [

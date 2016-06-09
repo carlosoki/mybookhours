@@ -11,6 +11,7 @@ namespace Project\Bundle\Api\Controller;
 use FOS\RestBundle\Controller\FOSRestController;
 use JmesPath\Tests\_TestClass;
 use JMS\Serializer\SerializationContext;
+use Project\Bundle\Api\Service\ExceptionWrapperHandler;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -47,17 +48,18 @@ class BaseController extends FOSRestController
 
         } else {
             if ($fromApp) {
-                $serializer = $this->get('jms_serializer');
-                $data =  $serializer->serialize($form, 'json');
+                $wrapErrors = new ExceptionWrapperHandler();
+                $form = $wrapErrors->getFormErrors($form);
 
                 return new JsonResponse(
                     [
                         'message' => 'error',
-                        'data' => $data
+                        'data' => $form
                     ],
                     400
                 );
             }
+
             return $form;
         }
     }
