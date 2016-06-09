@@ -71,9 +71,4 @@ class ClientController extends ApiClientController
         ];
         
     }
-
-    private function saveAppClient()
-    {
-
-    }
 }

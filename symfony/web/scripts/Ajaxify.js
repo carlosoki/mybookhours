@@ -5,10 +5,9 @@ function Ajaxify( form, obj, formName, formMethod ) {
         pars = obj.data.concat($(form).serializeArray());
 
     var action = $(form).attr('action');
+
     if (obj.action)
         action = obj.action;
-
-    console.log('Before ajax');
 
     $.ajax({
         type: formMethod,

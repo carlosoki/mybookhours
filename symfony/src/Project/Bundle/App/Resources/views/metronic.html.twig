@@ -161,7 +161,7 @@
                                 <span class="{% if app.request.get('_route') == 'app_dashboard' %} arrow open {% endif %}"></span>
                             </a>
                         </li>
-                        {% set client_routers = ['app_client_new', 'app_client_list'] %}
+                        {% set client_routers = ['app_client_new', 'app_client_list', 'app_client_edit'] %}
                         <li class="nav-item  {% if app.request.get('_route') in client_routers %} active open {% endif %}">
                             <a href="javascript:;" class="nav-link nav-toggle">
                                 <i class="icon-users"></i>
