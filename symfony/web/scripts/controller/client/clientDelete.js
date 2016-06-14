@@ -1,22 +1,11 @@
 $(document).ready(function() {
 
     $(".delete").click(function(){
-        var redirect = $(this).attr('redirect');
+        var formMethod = 'delete';
         var action = $(this).attr('action');
+        var redirect = $(this).attr('redirect');
 
-        $.ajax({
-            url: action,
-            type: 'delete',
-
-            success: function(result) {
-                $( location ).attr("href", redirect);
-            },
-
-            error: function(e){
-                console.log(e.responseText);
-            }
-
-        });
+        Ajaxify.submitDeleteAjax(formMethod, action, redirect);
 
     });
 });

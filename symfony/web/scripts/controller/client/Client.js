@@ -14,7 +14,7 @@ $().ready(
                 }
             };
 
-            Ajaxify( form, obj, formName, formMethod );
+            Ajaxify.processRequests( form, obj, formName, formMethod );
             return false;
         };
 
