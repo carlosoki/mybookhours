@@ -35,10 +35,6 @@ class BaseController extends FOSRestController
 
     public function processForm(Request $request, $formName, $form, $repoName, $object, $routeName, array $groupSerializer, $fromApp, $statusCode = null )
     {
-        if(!$fromApp){
-            $this->wrapRequest($request, $formName);
-        }
-
         $form->handleRequest($request);
 
         if ($form->isValid()) {
@@ -49,18 +45,18 @@ class BaseController extends FOSRestController
             return $this->renderSerializedView($groupSerializer, $fromApp, $object, $statusCode, $url);
 
         } else {
-            if ($fromApp) {
-                $wrapErrors = new ExceptionWrapperHandler();
-                $form = $wrapErrors->getFormErrors($form);
-
-                return new JsonResponse(
-                    [
-                        'message' => 'error',
-                        'data' => $form
-                    ],
-                    400
-                );
-            }
+//            if ($fromApp) {
+//                $wrapErrors = new ExceptionWrapperHandler();
+//                $form = $wrapErrors->getFormErrors($form);
+//
+//                return new JsonResponse(
+//                    [
+//                        'message' => 'error',
+//                        'data' => $form
+//                    ],
+//                    400
+//                );
+//            }
 
             return $form;
         }
@@ -76,18 +72,18 @@ class BaseController extends FOSRestController
         $context = SerializationContext::create()->setGroups($groupSerializer);
         $data->setSerializationContext($context);
 
-        if ($fromApp) {
-            $serializer = $this->get('jms_serializer');
-            $data =  $serializer->serialize($object, 'json', $context);
-
-            return new JsonResponse(
-                [
-                    'message' => 'success',
-                    'data' => $data
-                ],
-                $statusCode
-            );
-        }
+//        if ($fromApp) {
+//            $serializer = $this->get('jms_serializer');
+//            $data =  $serializer->serialize($object, 'json', $context);
+//
+//            return new JsonResponse(
+//                [
+//                    'message' => 'success',
+//                    'data' => $data
+//                ],
+//                $statusCode
+//            );
+//        }
 
         return $data;
     }

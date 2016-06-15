@@ -18,6 +18,8 @@ $().ready(
             return false;
         };
 
+        
+
         form.validate({
             rules: {
                 'client_type[name]': {

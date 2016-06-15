@@ -13,7 +13,7 @@ Ajaxify = {
             action = obj.action;
 
         if (formMethod === 'post' || formMethod === 'put') {
-            Ajaxify.submitPostPutAjax(form, obj, formMethod, pars, action);
+            Ajaxify.submitPostPutAjax(form, formName, formMethod, obj, pars, action);
         }
 
         if (formMethod === 'delete') {
@@ -38,7 +38,7 @@ Ajaxify = {
 
     },
 
-    submitPostPutAjax: function (form, obj, formMethod, pars, action) {
+    submitPostPutAjax: function (form, formName, formMethod, obj, pars, action) {
         $.ajax({
             type: formMethod,
             data: pars,
@@ -66,18 +66,16 @@ Ajaxify = {
             },
 
             error: function (jqXHR, textStatus, errorThrown) {
-                console.log('get in ERROR...');
                 var jsonReturn = null;
                 if (typeof jqXHR.responseJSON !== 'undefined') {
                     jsonReturn = jqXHR.responseJSON;
                 } else {
                     jsonReturn = $.toJSON(jqXHR.responseText);
                 }
-
                 $(form).find('span.has-error').remove();
                 $(form).find('.form-group.has-error').removeClass('.has-error');
 
-                $.each(jsonReturn.data,
+                $.each(jsonReturn.errors,
                     function(field, errors){
                         var fieldElement = $('#'+formName+'_'+field, form);
                         fieldElement.parents('.form-group').addClass('has-error');
@@ -99,6 +97,3 @@ Ajaxify = {
 
 
 }
-// / function Ajaxify( form, obj, formName, formMethod ) {
-//
-// }

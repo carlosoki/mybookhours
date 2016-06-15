@@ -30,7 +30,7 @@
                 <!-- BEGIN FORM-->
                 {{
                     include('ProjectAppBundle:Client:_formNewEdit.html.twig',{
-                        'action': path('app_client_edit', {'id': client.id}),
+                        'action': path('api_client_edit', {'id': client.id}),
                         'method': 'put'
                     })
                 }}

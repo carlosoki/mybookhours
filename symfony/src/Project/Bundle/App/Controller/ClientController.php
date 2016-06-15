@@ -7,8 +7,11 @@ use Project\Bundle\Api\Controller\ClientController as ApiClientController;
 use Project\Bundle\Api\Form\Type\ClientType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 
+/**
+ * Class APP ClientController only to build the browser forms.
+ * @package Project\Bundle\App\Controller
+ */
 class ClientController extends ApiClientController
 {
     const FROM_APP = true;
@@ -34,13 +37,6 @@ class ClientController extends ApiClientController
         $client = new Client();
         $form = $this->createForm(ClientType::class, $client);
 
-        if ($request->isMethod('POST')) {
-
-            $client = $this->newApiClientAction($request, self::FROM_APP, $form, $client);
-            return $client;
-
-        }
-
         return [
             'form' => $form->createView()
         ];
@@ -56,14 +52,6 @@ class ClientController extends ApiClientController
     {
         $client = $this->updateApiClientAction($request, $id, self::FROM_APP);
         $form = $this->createForm(ClientType::class, $client, ['method' => $request->getMethod()]);
-
-        if ($request->isMethod('PUT')) {
-            return $this->processForm(
-                $request, self::FORM_NAME, $form, self::CLIENT_REPO,
-                $client, 'api_client_edit', ['client'], Response::HTTP_OK
-            );
-
-        }
 
         return [
             'client' => $client,
