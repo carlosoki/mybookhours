@@ -34,15 +34,15 @@ function searchResult(response) {
             deleteUrls += deleteUrl.replace("client_id", client.id);
 
             if (client.isActive) {
-                var active = $("<a class='disabled btn blue'>Yes<i class='fa fa-ok'></i></a>")
+                var active = 'Yes';
             } else {
-                var active = $("<a class='disabled btn purple'>No<i class='fa fa-ok'></i></a>")
+                var active = 'No';
             }
 
             var tr = $('<tr>').append(
                 $('<td>').text(client.name),
                 $('<td>').text(client.address),
-                $('<td>').append(active),
+                $('<td>').text(active),
                 $('<td>').append($("<a href='"+editUrls+"' class='btn btn-sm yellow'><i class='fa fa-edit'></i></a>")),
                 $('<td>').append($("<a action='"+deleteUrls+"' class='deleteClient btn btn-sm red'><i class='fa fa-trash'></i></a>"))
             );
