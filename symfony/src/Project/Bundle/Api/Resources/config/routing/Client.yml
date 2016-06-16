@@ -26,5 +26,3 @@ api_client_delete:
   path: /client/{id}
   defaults: { _controller: 'ProjectApiBundle:Client:deleteApiClient' }
   methods: [DELETE]
-  requirements:
-    id:  \d+

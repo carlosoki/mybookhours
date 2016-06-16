@@ -8,6 +8,7 @@
 
 namespace Project\Bundle\Api\Entity\Repository;
 
+use Doctrine\Common\Util\Debug;
 use Project\Bundle\Api\Entity\Client;
 use Doctrine\ORM\EntityRepository;
 
@@ -26,5 +27,37 @@ class ClientRepository extends EntityRepository
     {
         $this->_em->remove($client);
         $this->_em->flush();
+    }
+
+    public function searchClients($parameters)
+    {
+        if (!$parameters) {
+            $parameters = [];
+        }
+        $conditions = [];
+
+        if ($parameters['name']) {
+            $names = explode(',', $parameters['name']);
+
+            foreach ($names as $name) {
+                $conditions[] = "c.name LIKE '%{$name}%'";
+            }
+
+        }
+
+        $qb = $this->_em->createQueryBuilder();
+
+        $qb->select('c')
+            ->from('ProjectApiBundle:Client','c')
+        ;
+
+        if (! empty($conditions)) {
+            $orX = $qb->expr()->orX()
+                ->addMultiple($conditions);
+            $qb = $qb->andwhere($orX);
+        }
+        $qb->orderBy('c.name');
+
+        return $qb->getQuery()->getResult();
     }
 }

@@ -12,5 +12,3 @@ app_client_edit:
   path: /client/{id}
   defaults: { _controller: 'ProjectAppBundle:Client:updateAppClient' }
   methods: GET
-  requirements:
-    id:  \d+

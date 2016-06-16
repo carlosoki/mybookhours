@@ -9,6 +9,7 @@
 namespace Project\Bundle\Api\Controller;
 
 use FOS\RestBundle\Controller\Annotations;
+use FOS\RestBundle\Request\ParamFetcher;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Project\Bundle\Api\Entity\Client;
 use Project\Bundle\Api\Form\Type\ClientType;
@@ -35,15 +36,17 @@ class ClientController extends BaseController
      *   }
      * )
      *
+     * @Annotations\QueryParam(name="name", description="Search clients by names")
+     *
      * @return \FOS\RestBundle\View\View
      */
-    public function getApiClientsAction(bool $fromApp = null)
+    public function getApiClientsAction(ParamFetcher $paramFetcher = null, bool $fromApp = null)
     {
-        $client = $this->getRepo(self::CLIENT_REPO)->findAll();
+        $client = $this->getRepo(self::CLIENT_REPO)->searchClients($paramFetcher->all());
 
-        if ($fromApp) {
-            return $client;
-        }
+//        if ($fromApp) {
+//            return $client;
+//        }
 
         $url = $this->generateUrl('api_client_list');
 

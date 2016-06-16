@@ -15,19 +15,16 @@ Ajaxify = {
         if (formMethod === 'post' || formMethod === 'put') {
             Ajaxify.submitPostPutAjax(form, formName, formMethod, obj, pars, action);
         }
-
-        if (formMethod === 'delete') {
-            this.submitDeleteAjax(formMethod, action);
-        }
     },
 
-    submitDeleteAjax: function (formMethod, action, redirect) {
+    submitDeleteAjax: function (formMethod, action, research, researchParams) {
         $.ajax({
             url: action,
             type: 'delete',
 
             success: function(result) {
-                $( location ).attr("href", redirect);
+                this.submitSearchAjax(research, researchParams);
+                // $( location ).attr("href", redirect);
             },
 
             error: function(e){
@@ -91,6 +88,21 @@ Ajaxify = {
                 );
             }
 
+        });
+
+    },
+
+    submitSearchAjax: function (action, names ) {
+
+        $.ajax({
+            type: 'get',
+            url: action,
+            dataType: 'json',
+            data: {name : names},
+            success : function(response)
+            {
+                searchResult(response);
+            }
         });
 
     }

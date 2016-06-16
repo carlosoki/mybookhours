@@ -21,9 +21,9 @@ class ClientController extends ApiClientController
      */
     public function getAppClientsAction()
     {
-        $clients = $this->getApiClientsAction(self::FROM_APP);
-
-        return ['clients' => $clients];
+        return [
+            'clients' => ''
+        ];
 
     }
 

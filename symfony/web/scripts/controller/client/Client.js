@@ -17,9 +17,7 @@ $().ready(
             Ajaxify.processRequests( form, obj, formName, formMethod );
             return false;
         };
-
         
-
         form.validate({
             rules: {
                 'client_type[name]': {

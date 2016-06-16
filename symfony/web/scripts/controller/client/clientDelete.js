@@ -3,9 +3,12 @@ $(document).ready(function() {
     $(".delete").click(function(){
         var formMethod = 'delete';
         var action = $(this).attr('action');
-        var redirect = $(this).attr('redirect');
+        var research = $(this).attr('research');
+        var researchParams = $(this).attr('researchParams');
 
-        Ajaxify.submitDeleteAjax(formMethod, action, redirect);
+        console.log('on delete...');
+
+        Ajaxify.submitDeleteAjax(formMethod, action, research, researchParams);
 
     });
 });
