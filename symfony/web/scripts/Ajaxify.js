@@ -26,7 +26,6 @@ Ajaxify = {
                 removeRow.find('td').fadeOut(1000,function(){
                     removeRow.remove();
                 });
-                console.log('should be removed...');
             },
 
             error: function(e){

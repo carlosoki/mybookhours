@@ -43,45 +43,14 @@
                     <i class="fa fa-cogs"></i>List of clients </div>
                 <div class="tools">
                     <a href="{{ path('app_client_new') }}" class="fa fa-user-plus"></a>
-                    <a href="" class="expand"> </a>
+                    <a href="" id="listClient" class="expand"> </a>
                     <a href="{{ path('app_client_list') }}" class="reload"> </a>
                 </div>
             </div>
-            <div class="portlet-body portlet-collapsed">
+            <div id="clientResult" class="portlet-body portlet-collapsed flip-scroll">
                 <div class="table-responsive">
-                    <table class="table table-bordered">
-                        <tbody id="searchResult">
-                        {#<div >#}
-
-                        {#{% for client in clients %}#}
-                            {#<tr>#}
-                                {#<td> {{ client.name }} </td>#}
-                                {#<td> {{ client.address }} </td>#}
-                                {#<td> {% if client.isInactive %}#}
-                                        {#<a class="disabled btn purple"> No#}
-                                            {#<i class="fa fa-ok"></i>#}
-                                        {#</a>#}
-                                    {#{% else %}#}
-                                        {#<a class="disabled btn blue"> Yes#}
-                                            {#<i class="fa fa-ok"></i>#}
-                                        {#</a>#}
-                                    {#{% endif %}#}
-                                {#</td>#}
-                                {#<td>#}
-                                    {#<a href="{{ path('app_client_edit', {'id': client.id}) }}" class="btn yellow">#}
-                                        {#<i class="fa fa-edit"></i>#}
-                                    {#</a>#}
-                                {#</td>#}
-                                {#<td>#}
-                                    {#<a action="{{ path('api_client_delete', { 'id': client.id }) }}" redirect="{{ path('app_client_list') }}" class="delete btn red">#}
-                                        {#<i class="fa fa-trash"></i>#}
-                                    {#</a>#}
-                                {#</td>#}
-                            {#</tr>#}
-                        {#{% endfor %}#}
-                        {#</div>#}
-                        </tbody>
-                        <thead>
+                    <table class="table table-bordered table-striped table-condensed flip-content">
+                        <thead class="flip-content">
                         <tr>
                             <th> Name </th>
                             <th> Address </th>
@@ -90,6 +59,8 @@
                             <th> Delete </th>
                         </tr>
                         </thead>
+                        <tbody id="searchResult">
+                        </tbody>
                     </table>
                 </div>
             </div>
