@@ -21,7 +21,7 @@ class ClientType extends AbstractType
         $builder->add('name', TextType::class, ['required' => true])
             ->add('address', TextType::class, ['required' => true])
             ->add('aboutClient', TextareaType::class, ['required' => false])
-            ->add('isInactive', CheckboxType::class, ['required' => false])
+            ->add('isActive', CheckboxType::class, ['required' => true, 'data'=> true])
             ->getForm();
     }
 

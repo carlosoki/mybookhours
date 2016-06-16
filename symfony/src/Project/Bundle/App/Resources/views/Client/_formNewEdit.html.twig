@@ -46,20 +46,20 @@
         </div>
         <div class="form-group">
             {{
-            form_label(form.isInactive, 'Active', {
+            form_label(form.isActive, 'Active', {
                 'label_attr': {'class': 'col-md-3 control-label'}
             })
             }}
             <div class="col-md-4">
                 {{
-                form_widget(form.isInactive, {
+                form_widget(form.isActive, {
                     'attr': {
                         'class': 'make-switch',
-                        'data-off-color' : 'default',
-                        'data-on-color' : 'danger',
+                        'data-off-color' : 'danger',
+                        'data-on-color' : 'default',
                         'data-size': 'small',
-                        'data-on-text': 'No',
-                        'data-off-text': 'Yes'
+                        'data-on-text': 'Yes',
+                        'data-off-text': 'No'
                     }
                 })
                 }}

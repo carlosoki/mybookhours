@@ -33,7 +33,7 @@ function searchResult(response) {
             editUrls += editUrl.replace("client_id", client.id);
             deleteUrls += deleteUrl.replace("client_id", client.id);
 
-            if (client.isInactive) {
+            if (client.isActive) {
                 var active = $("<a class='disabled btn blue'>Yes<i class='fa fa-ok'></i></a>")
             } else {
                 var active = $("<a class='disabled btn purple'>No<i class='fa fa-ok'></i></a>")

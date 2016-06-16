@@ -56,10 +56,13 @@ class Client
     private $aboutClient;
 
     /**
-     * @ORM\Column(name="is_inactive", type="boolean", nullable=true, options={"default" = 0})
+     *
+     *  @Assert\NotNull()
+     *
+     * @ORM\Column(name="is_active", type="boolean", options={"default" = 1})
      * @Serializer\Groups({"client", "client_list" })
      */
-    private $isInactive = false;
+    private $isActive = true;
 
     /**
      * @return mixed
@@ -129,18 +132,18 @@ class Client
     /**
      * @return mixed
      */
-    public function getIsInactive()
+    public function getIsActive()
     {
-        return $this->isInactive;
+        return $this->isActive;
     }
 
     /**
-     * @param mixed $isInactive
+     * @param mixed $isActive
      * @return Client
      */
-    public function setIsInactive($isInactive)
+    public function setIsActive($isActive)
     {
-        $this->isInactive = $isInactive;
+        $this->isActive = $isActive;
 
         return $this;
     }
