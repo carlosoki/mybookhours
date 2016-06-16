@@ -38,7 +38,7 @@ function searchResult(response) {
                 $('<td>').text(client.address),
                 $('<td>').text(client.isInactive),
                 $('<td>').append($("<a href='"+editUrls+"' class='btn yellow'><i class='fa fa-edit'></i></a>")),
-                $('<td>').append($("<a action='"+deleteUrls+"' class='delete btn red' research='"+research+"' researchParams='"+researchParams+"'><i class='fa fa-trash'></i></a>"))
+                $('<td>').append($("<a action='"+deleteUrls+"' class='deleteClient btn red'><i class='fa fa-trash'></i></a>"))
             );
             $('#searchResult').append(tr);
 

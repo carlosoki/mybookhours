@@ -17,14 +17,16 @@ Ajaxify = {
         }
     },
 
-    submitDeleteAjax: function (formMethod, action, research, researchParams) {
+    submitDeleteAjax: function (formMethod, action, removeRow) {
         $.ajax({
             url: action,
             type: 'delete',
 
             success: function(result) {
-                this.submitSearchAjax(research, researchParams);
-                // $( location ).attr("href", redirect);
+                removeRow.find('td').fadeOut(1000,function(){
+                    removeRow.remove();
+                });
+                console.log('should be removed...');
             },
 
             error: function(e){

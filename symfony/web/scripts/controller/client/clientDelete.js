@@ -1,14 +1,11 @@
-$(document).ready(function() {
-
-    $(".delete").click(function(){
+$(document).on("click", "a.deleteClient",
+    function () {
         var formMethod = 'delete';
         var action = $(this).attr('action');
-        var research = $(this).attr('research');
-        var researchParams = $(this).attr('researchParams');
+        var removeRow = $(this).closest('tr');
 
         console.log('on delete...');
 
-        Ajaxify.submitDeleteAjax(formMethod, action, research, researchParams);
-
-    });
-});
+        Ajaxify.submitDeleteAjax(formMethod, action, removeRow);
+    }
+);
