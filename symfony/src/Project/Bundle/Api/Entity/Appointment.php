@@ -26,10 +26,67 @@ class Appointment
     private $id;
 
     /**
-     * @ORM\Column(name="service_info", type="text")
+     * @ORM\Column(name="start", type="datetime")
+     */
+    private $start;
+
+    /**
+     * @ORM\Column(name="end", type="datetime")
+     */
+    private $end;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Project\Bundle\Api\Entity\Client")
+     * @ORM\JoinColumn(name="client_id", referencedColumnName="id", nullable=false)
+     *
+     * @Assert\NotNull()
+     * @Assert\Valid()
+     *
+     */
+    private $client;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Project\Bundle\Api\Entity\Staff")
+     * @ORM\JoinColumn(name="staff_id", referencedColumnName="id", nullable=false)
+     *
+     * @Assert\NotNull()
+     * @Assert\Valid()
+     *
+     */
+    private $staff;
+
+    /**
+     * @ORM\OneToOne(targetEntity="Project\Bundle\Api\Entity\Task", mappedBy="appointment")
+     *
+     */
+    private $task;
+
+    /**
+     * @ORM\Column(name="service_info", type="text", nullable=true)
      * @Serializer\Groups({"appointment"})
      */
     private $serviceInfo;
+
+    /**
+     * @ORM\Column(name="report", type="text", nullable=true)
+     */
+    private $report;
+
+    /**
+     * @ORM\Column(name="client_signature", type="string", nullable=true)
+     */
+    private $clientSignature;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Project\Bundle\Api\Entity\TravelInfo",
+     *      mappedBy="appointment",
+     *      cascade={"remove", "persist"},
+     *      orphanRemoval=true
+     * )
+     *
+     * @Assert\Valid()
+     */
+    private $travelInfo;
 
 
     /**
@@ -38,6 +95,132 @@ class Appointment
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getStart()
+    {
+        return $this->start;
+    }
+
+    /**
+     * @param mixed $start
+     * @return Appointment
+     */
+    public function setStart($start)
+    {
+        $this->start = $start;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEnd()
+    {
+        return $this->end;
+    }
+
+    /**
+     * @param mixed $end
+     * @return Appointment
+     */
+    public function setEnd($end)
+    {
+        $this->end = $end;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getClient()
+    {
+        return $this->client;
+    }
+
+    /**
+     * @param mixed $client
+     * @return Appointment
+     */
+    public function setClient($client)
+    {
+        $this->client = $client;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getStaff()
+    {
+        return $this->staff;
+    }
+
+    /**
+     * @param mixed $staff
+     * @return Appointment
+     */
+    public function setStaff($staff)
+    {
+        $this->staff = $staff;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTask()
+    {
+        return $this->task;
+    }
+
+    /**
+     * @param mixed $task
+     * @return Appointment
+     */
+    public function setTask($task)
+    {
+        $this->task = $task;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getReport()
+    {
+        return $this->report;
+    }
+
+    /**
+     * @param mixed $report
+     * @return Appointment
+     */
+    public function setReport($report)
+    {
+        $this->report = $report;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getClientSignature()
+    {
+        return $this->clientSignature;
+    }
+
+    /**
+     * @param mixed $clientSignature
+     * @return Appointment
+     */
+    public function setClientSignature($clientSignature)
+    {
+        $this->clientSignature = $clientSignature;
+        return $this;
     }
 
     /**
@@ -57,4 +240,13 @@ class Appointment
         $this->serviceInfo = $serviceInfo;
         return $this;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getTravelInfo()
+    {
+        return $this->travelInfo;
+    }
+
 }
