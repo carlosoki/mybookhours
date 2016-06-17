@@ -1,28 +1,28 @@
 api_client_list:
   path:     /clients
-  defaults: { _controller: 'ProjectApiBundle:Client:getApiClients' }
+  defaults: { _controller: 'ProjectApiBundle:ClientApi:getApiClients' }
   methods: GET
 
 api_client:
   path:     /client/{id}
-  defaults: { _controller: 'ProjectApiBundle:Client:getApiClient' }
+  defaults: { _controller: 'ProjectApiBundle:ClientApi:getApiClient' }
   methods: GET
   requirements:
     id: \d+
 
 api_client_new:
   path:   /client
-  defaults: { _controller: 'ProjectApiBundle:Client:NewApiClient' }
+  defaults: { _controller: 'ProjectApiBundle:ClientApi:newApiClient' }
   methods: POST
 
 api_client_edit:
   path: /client/{id}
-  defaults: { _controller: 'ProjectApiBundle:Client:UpdateApiClient' }
+  defaults: { _controller: 'ProjectApiBundle:ClientApi:updateApiClient' }
   methods: [PUT,PATCH]
   requirements:
     id:  \d+
 
 api_client_delete:
   path: /client/{id}
-  defaults: { _controller: 'ProjectApiBundle:Client:deleteApiClient' }
+  defaults: { _controller: 'ProjectApiBundle:ClientApi:deleteApiClient' }
   methods: [DELETE]

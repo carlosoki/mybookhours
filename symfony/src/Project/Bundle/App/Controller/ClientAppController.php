@@ -3,7 +3,7 @@
 namespace Project\Bundle\App\Controller;
 
 use Project\Bundle\Api\Entity\Client;
-use Project\Bundle\Api\Controller\ClientController as ApiClientController;
+use Project\Bundle\Api\Controller\ClientApiController as ApiClientController;
 use Project\Bundle\Api\Form\Type\ClientType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
  * Class APP ClientController only to build the browser forms.
  * @package Project\Bundle\App\Controller
  */
-class ClientController extends ApiClientController
+class ClientAppController extends ApiClientController
 {
     const FROM_APP = true;
 

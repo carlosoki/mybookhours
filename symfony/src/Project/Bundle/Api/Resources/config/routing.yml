@@ -1,2 +1,5 @@
 project_api_client:
   resource: "@ProjectApiBundle/Resources/config/routing/Client.yml"
+
+project_api_appointment:
+  resource: "@ProjectApiBundle/Resources/config/routing/Appointment.yml"

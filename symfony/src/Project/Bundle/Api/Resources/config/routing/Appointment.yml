@@ -1,0 +1,28 @@
+api_appointment_list:
+  path: /appointments
+  defaults: { _controller: 'ProjectApiBundle:AppointmentApi:getApiAppointments' }
+  methods: GET
+
+api_appointment:
+  path: /appointment/{id}
+  defaults: { _controller: 'ProjectApiBundle:AppointmentApi:getApiAppointment' }
+  methods: GET
+  requirements:
+      id:  \d+
+
+api_appointment_new:
+  path:   /appointment
+  defaults: { _controller: 'ProjectApiBundle:AppointmentApi:newApiAppointment' }
+  methods: POST
+
+api_appointment_edit:
+  path: /appointment/{id}
+  defaults: { _controller: 'ProjectApiBundle:AppointmentApi:updateApiAppointment' }
+  methods: [PUT,PATCH]
+  requirements:
+    id:  \d+
+
+api_appointment_delete:
+  path: /appointment/{id}
+  defaults: { _controller: 'ProjectApiBundle:AppointmentApi:deleteApiAppointment' }
+  methods: [DELETE]

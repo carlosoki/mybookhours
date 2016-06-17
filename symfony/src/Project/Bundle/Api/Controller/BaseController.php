@@ -33,7 +33,7 @@ class BaseController extends FOSRestController
         $request->request->replace($wrapperParams);
     }
 
-    public function processForm(Request $request, $formName, $form, $repoName, $object, $routeName, array $groupSerializer, $fromApp, $statusCode = null )
+    public function processForm(Request $request, $form, $repoName, $object, $routeName, array $groupSerializer, $statusCode = null )
     {
         $form->handleRequest($request);
 
@@ -42,27 +42,14 @@ class BaseController extends FOSRestController
             
             $url = $this->generateUrl($routeName, ['id' => $object->getId()]);
             
-            return $this->renderSerializedView($groupSerializer, $fromApp, $object, $statusCode, $url);
+            return $this->renderSerializedView($groupSerializer, $object, $statusCode, $url);
 
         } else {
-//            if ($fromApp) {
-//                $wrapErrors = new ExceptionWrapperHandler();
-//                $form = $wrapErrors->getFormErrors($form);
-//
-//                return new JsonResponse(
-//                    [
-//                        'message' => 'error',
-//                        'data' => $form
-//                    ],
-//                    400
-//                );
-//            }
-
             return $form;
         }
     }
 
-    public function renderSerializedView(array $groupSerializer, $fromApp, $object = null, $statusCode = null, $url = null)
+    public function renderSerializedView(array $groupSerializer, $object = null, $statusCode = null, $url = null)
     {
         if (!$statusCode) {
             $statusCode = Response::HTTP_OK;
@@ -71,19 +58,6 @@ class BaseController extends FOSRestController
         $data = $this->view($object, $statusCode)->setHeader('Location', $url);
         $context = SerializationContext::create()->setGroups($groupSerializer);
         $data->setSerializationContext($context);
-
-//        if ($fromApp) {
-//            $serializer = $this->get('jms_serializer');
-//            $data =  $serializer->serialize($object, 'json', $context);
-//
-//            return new JsonResponse(
-//                [
-//                    'message' => 'success',
-//                    'data' => $data
-//                ],
-//                $statusCode
-//            );
-//        }
 
         return $data;
     }

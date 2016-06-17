@@ -21,11 +21,14 @@ class Staff
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      * @ORM\Column(name="id", type="integer")
+     *
+     * @Serializer\Groups({"appointment"})
      */
     private $id;
 
     /**
      * @ORM\Column(name="name", type="string")
+     * @Serializer\Groups({"appointment"})
      */
     private $name;
 

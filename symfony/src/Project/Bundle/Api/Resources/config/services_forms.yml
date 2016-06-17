@@ -1,7 +1,7 @@
 services:
     #here all forms as services
-    project.form.type.client.log:
-        class: Project\Bundle\Api\Form\Type\ClientLogType
+    project.form.type.appointment:
+        class: Project\Bundle\Api\Form\Type\AppointmentType
         arguments: ['@doctrine.orm.entity_manager']
         tags:
-            - { name: form.type, alias: client_log_type }
+            - { name: form.type, alias: appointment_type }

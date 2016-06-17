@@ -1,14 +1,14 @@
 app_client_list:
   path:     /clients
-  defaults: { _controller: 'ProjectAppBundle:Client:getAppClients' }
+  defaults: { _controller: 'ProjectAppBundle:ClientApp:getAppClients' }
   methods: GET
 
 app_client_new:
   path: /client/new
-  defaults: { _controller: 'ProjectAppBundle:Client:newAppClient' }
+  defaults: { _controller: 'ProjectAppBundle:ClientApp:newAppClient' }
   methods: GET
 
 app_client_edit:
   path: /client/{id}
-  defaults: { _controller: 'ProjectAppBundle:Client:updateAppClient' }
+  defaults: { _controller: 'ProjectAppBundle:ClientApp:updateAppClient' }
   methods: GET

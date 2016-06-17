@@ -12,8 +12,8 @@ services:
         arguments:
             -  Project\Bundle\Api\Entity\Client
 
-    api.repository.client.log:
+    api.repository.appointment:
             class: Doctrine\ORM\EntityRepository
             factory: ['@doctrine.orm.entity_manager', getRepository]
             arguments:
-                -  Project\Bundle\Api\Entity\ClientLog
+                -  Project\Bundle\Api\Entity\Appointment

@@ -10,7 +10,7 @@ use JMS\Serializer\Annotation AS Serializer;
  * Class Appointment
  * @package Project\Bundle\Api\Entity
  *
- * @ORM\Entity(repositoryClass="Project\Bundle\Api\Entity\Repository\ClientRepository")
+ * @ORM\Entity(repositoryClass="Project\Bundle\Api\Entity\Repository\AppointmentRepository")
  * @ORM\Table(name="appointment")
  * @ORM\HasLifecycleCallbacks()
  *
@@ -21,17 +21,20 @@ class Appointment
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      * @ORM\Column(name="id", type="integer")
-     * @Serializer\Groups({"client", "clientLog", "client_list" })
+     * @Serializer\Groups({"appointment"})
      */
     private $id;
 
     /**
      * @ORM\Column(name="start", type="datetime")
+     *
+     * @Serializer\Groups({"appointment"})
      */
     private $start;
 
     /**
      * @ORM\Column(name="end", type="datetime")
+     * @Serializer\Groups({"appointment"})
      */
     private $end;
 
@@ -41,6 +44,8 @@ class Appointment
      *
      * @Assert\NotNull()
      * @Assert\Valid()
+     *
+     * @Serializer\Groups({"appointment"})
      *
      */
     private $client;
@@ -52,11 +57,15 @@ class Appointment
      * @Assert\NotNull()
      * @Assert\Valid()
      *
+     * @Serializer\Groups({"appointment"})
+     *
      */
     private $staff;
 
     /**
      * @ORM\OneToOne(targetEntity="Project\Bundle\Api\Entity\Task", mappedBy="appointment")
+     *
+     * @Serializer\Groups({"appointment"})
      *
      */
     private $task;
@@ -69,11 +78,15 @@ class Appointment
 
     /**
      * @ORM\Column(name="report", type="text", nullable=true)
+     * @Serializer\Groups({"appointment"})
+     *
      */
     private $report;
 
     /**
      * @ORM\Column(name="client_signature", type="string", nullable=true)
+     *
+     * @Serializer\Groups({"appointment"})
      */
     private $clientSignature;
 
@@ -85,6 +98,7 @@ class Appointment
      * )
      *
      * @Assert\Valid()
+     * @Serializer\Groups({"appointment"})
      */
     private $travelInfo;
 
@@ -247,6 +261,17 @@ class Appointment
     public function getTravelInfo()
     {
         return $this->travelInfo;
+    }
+
+    /**
+     * @param TravelInfo $travelInfo
+     * @return $this
+     */
+    public function addTravelInfo(TravelInfo $travelInfo)
+    {
+        $this->travelInfo[] = $travelInfo;
+
+        return $this;
     }
 
 }

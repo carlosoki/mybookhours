@@ -21,7 +21,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
  * Class ClientController
  * @package Project\Bundle\Api\Controller
  */
-class ClientController extends BaseController
+class ClientApiController extends BaseController
 {
     const CLIENT_REPO = 'api.repository.client';
     const FORM_NAME = 'client_type';
@@ -38,19 +38,16 @@ class ClientController extends BaseController
      *
      * @Annotations\QueryParam(name="name", description="Search clients by names")
      *
+     * @param ParamFetcher $paramFetcher
      * @return \FOS\RestBundle\View\View
      */
-    public function getApiClientsAction(ParamFetcher $paramFetcher = null, bool $fromApp = null)
+    public function getApiClientsAction(ParamFetcher $paramFetcher = null)
     {
         $client = $this->getRepo(self::CLIENT_REPO)->searchClients($paramFetcher->all());
 
-//        if ($fromApp) {
-//            return $client;
-//        }
-
         $url = $this->generateUrl('api_client_list');
 
-        return $this->renderSerializedView(['client_list'], $fromApp, $client, null, $url);
+        return $this->renderSerializedView(['client_list'], $client, null, $url);
     }
 
     /**
@@ -94,22 +91,14 @@ class ClientController extends BaseController
      * @param Request $request
      * @return \FOS\RestBundle\View\View
      */
-    public function newApiClientAction(Request $request, bool $fromApp = null, $form = null, Client $client = null)
+    public function newApiClientAction(Request $request)
     {
-        if(!$form){
-            $client = new Client();
-            $form = $this->createForm(ClientType::class, $client);
-        }
-
-        if ($fromApp) {
-            $router = 'app_client_new';
-        } else {
-            $router = 'api_client';
-        }
+        $client = new Client();
+        $form = $this->createForm(ClientType::class, $client);
 
         return $this->processForm(
-            $request, self::FORM_NAME, $form, self::CLIENT_REPO,
-            $client, $router, ['client'], $fromApp, Response::HTTP_CREATED
+            $request, $form, self::CLIENT_REPO, $client,
+            'api_client', ['client'], Response::HTTP_CREATED
         );
     }
 
@@ -144,8 +133,8 @@ class ClientController extends BaseController
         $form = $this->createForm(ClientType::class, $client, ['method' => $request->getMethod()]);
 
         return $this->processForm(
-            $request, self::FORM_NAME, $form, self::CLIENT_REPO,
-            $client, 'api_client', ['client'], $fromApp, Response::HTTP_OK
+            $request, $form, self::CLIENT_REPO, $client,
+            'api_client', ['client'], Response::HTTP_OK
         );
     }
 
