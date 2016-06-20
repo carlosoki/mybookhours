@@ -8,7 +8,7 @@
     },
     "repositories": [{
         "type": "vcs",
-        "url": "https://github.com/ONEOKI/WebApiExtension"
+        "url": "https://github.com/Behat/WebApiExtension"
     }],
     "require": {
         "php": ">=5.3.3",
@@ -76,6 +76,6 @@
         "guzzle/plugin-mock": "*",
         "phpspec/phpspec": "~2.0",
         "behat/symfony2-extension": "^2.0",
-        "behat/web-api-extension": "1.0.*@dev"
+        "behat/web-api-extension": "~1.0@dev"
     }
 }
