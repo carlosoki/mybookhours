@@ -63,19 +63,54 @@ class Appointment
     private $staff;
 
     /**
-     * @ORM\OneToOne(targetEntity="Project\Bundle\Api\Entity\Task", mappedBy="appointment")
-     *
-     * @Serializer\Groups({"appointment"})
-     *
-     */
-    private $task;
-
-    /**
      * @ORM\Column(name="service_info", type="text", nullable=true)
      * @Serializer\Groups({"appointment"})
      */
     private $serviceInfo;
 
+    //START TASK INFORMATION
+    /**
+     * @ORM\Column(name="client_info", type="text", nullable=true)
+     *
+     * @Serializer\Groups({"appointment"})
+     *
+     */
+    private $clientInfo;
+
+    /**
+     * @ORM\Column(name="home_care", type="text", nullable=true)
+     *
+     * @Serializer\Groups({"appointment"})
+     *
+     */
+    private $homeCare;
+
+    /**
+     * @ORM\Column(name="personal_care", type="text", nullable=true)
+     *
+     * @Serializer\Groups({"appointment"})
+     *
+     */
+    private $personalCare;
+
+    /**
+     * @ORM\Column(name="respite", type="text", nullable=true)
+     *
+     * @Serializer\Groups({"appointment"})
+     *
+     */
+    private $respite;
+
+    /**
+     * @ORM\Column(name="others", type="text", nullable=true)
+     *
+     * @Serializer\Groups({"appointment"})
+     *
+     */
+    private $others;
+    //END TASK INFORMATION
+
+    //START EVENT REGISTRATION
     /**
      * @ORM\Column(name="report", type="text", nullable=true)
      * @Serializer\Groups({"appointment"})
@@ -101,7 +136,7 @@ class Appointment
      * @Serializer\Groups({"appointment"})
      */
     private $travelInfo;
-
+    //END EVENT REGISTRATION
 
     /**
      * @return mixed
@@ -186,24 +221,6 @@ class Appointment
     /**
      * @return mixed
      */
-    public function getTask()
-    {
-        return $this->task;
-    }
-
-    /**
-     * @param mixed $task
-     * @return Appointment
-     */
-    public function setTask($task)
-    {
-        $this->task = $task;
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
     public function getReport()
     {
         return $this->report;
@@ -216,6 +233,96 @@ class Appointment
     public function setReport($report)
     {
         $this->report = $report;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getClientInfo()
+    {
+        return $this->clientInfo;
+    }
+
+    /**
+     * @param mixed $clientInfo
+     * @return Appointment
+     */
+    public function setClientInfo($clientInfo)
+    {
+        $this->clientInfo = $clientInfo;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getHomeCare()
+    {
+        return $this->homeCare;
+    }
+
+    /**
+     * @param mixed $homeCare
+     * @return Appointment
+     */
+    public function setHomeCare($homeCare)
+    {
+        $this->homeCare = $homeCare;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPersonalCare()
+    {
+        return $this->personalCare;
+    }
+
+    /**
+     * @param mixed $personalCare
+     * @return Appointment
+     */
+    public function setPersonalCare($personalCare)
+    {
+        $this->personalCare = $personalCare;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRespite()
+    {
+        return $this->respite;
+    }
+
+    /**
+     * @param mixed $respite
+     * @return Appointment
+     */
+    public function setRespite($respite)
+    {
+        $this->respite = $respite;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getOthers()
+    {
+        return $this->others;
+    }
+
+    /**
+     * @param mixed $others
+     * @return Appointment
+     */
+    public function setOthers($others)
+    {
+        $this->others = $others;
         return $this;
     }
 

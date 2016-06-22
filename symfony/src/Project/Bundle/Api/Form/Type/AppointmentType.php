@@ -4,6 +4,7 @@ namespace Project\Bundle\Api\Form\Type;
 
 use Doctrine\ORM\EntityManager;
 use FOS\RestBundle\Form\Transformer\EntityToIdObjectTransformer;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
@@ -44,6 +45,11 @@ class AppointmentType extends AbstractType
            ->add('serviceInfo', TextareaType::class, ['required' => false])
            ->add('report', TextareaType::class, ['required' => false])
            ->add('clientSignature', TextType::class, ['required' => false])
+           ->add('clientInfo', TextareaType::class, ['required' => false])
+           ->add('homeCare', TextareaType::class, ['required' => false])
+           ->add('personalCare', TextareaType::class, ['required' => false])
+           ->add('respite', TextareaType::class, ['required' => false])
+           ->add('others', TextareaType::class, ['required' => false])
 //           ->add('travelInfo', CollectionType::class, [
 //               'type' => new TravelInfoType($this->em),
 //               'allow_add' => true,
