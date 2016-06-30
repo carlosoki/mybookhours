@@ -50,13 +50,13 @@ class AppointmentType extends AbstractType
            ->add('personalCare', TextareaType::class, ['required' => false])
            ->add('respite', TextareaType::class, ['required' => false])
            ->add('others', TextareaType::class, ['required' => false])
-//           ->add('travelInfo', CollectionType::class, [
-//               'type' => new TravelInfoType($this->em),
-//               'allow_add' => true,
-//               'allow_delete' => true,
-//               'by_reference' => false,
-//               'error_bubbling' => false,
-//           ])
+           ->add('travelInfo', CollectionType::class, [
+               'type' => new TravelInfoType(),
+               'allow_add' => true,
+               'allow_delete' => true,
+               'by_reference' => false,
+               'error_bubbling' => false,
+           ])
            ->getForm()
        ;
     }

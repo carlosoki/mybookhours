@@ -44,16 +44,20 @@ class TravelInfo
 
     /**
      * @ORM\Column(name="travel_type", type="string")
+     * @Serializer\Groups({"appointment"})
+     *
      */
     private $travelType;
 
     /**
      * @ORM\Column(name="km_start", type="float", nullable=true)
+     * @Serializer\Groups({"appointment"})
      */
     private $kmStart;
 
     /**
      * @ORM\Column(name="km_end", type="float", nullable=true)
+     * @Serializer\Groups({"appointment"})
      */
     private $kmEnd;
 
@@ -94,6 +98,17 @@ class TravelInfo
     }
 
     /**
+     * @param mixed $appointment
+     * @return $this
+     */
+    public function setAppointment(Appointment $appointment)
+    {
+        $this->appointment = $appointment;
+        return $this;
+    }
+
+
+    /**
      * @return mixed
      */
     public function getClient()
@@ -105,7 +120,7 @@ class TravelInfo
      * @param mixed $client
      * @return TravelInfo
      */
-    public function setClient($client)
+    public function setClient(Client $client)
     {
         $this->client = $client;
         return $this;

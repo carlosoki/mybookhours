@@ -2,6 +2,7 @@
 
 namespace Project\Bundle\Api\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use JMS\Serializer\Annotation AS Serializer;
@@ -136,7 +137,13 @@ class Appointment
      * @Serializer\Groups({"appointment"})
      */
     private $travelInfo;
+
     //END EVENT REGISTRATION
+
+    public function __construct()
+    {
+        $this->travelInfo = new ArrayCollection();
+    }
 
     /**
      * @return mixed
@@ -377,8 +384,15 @@ class Appointment
     public function addTravelInfo(TravelInfo $travelInfo)
     {
         $this->travelInfo[] = $travelInfo;
+        $travelInfo->setAppointment($this);
+        $travelInfo->setClient($this->client);
 
         return $this;
+    }
+
+    public function removeTravelInfo(TravelInfo $travelInfo)
+    {
+        $this->travelInfo->removeElement($travelInfo);
     }
 
 }

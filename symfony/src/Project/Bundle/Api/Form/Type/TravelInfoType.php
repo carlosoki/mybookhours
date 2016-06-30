@@ -2,35 +2,31 @@
 
 namespace Project\Bundle\Api\Form\Type;
 
-use Doctrine\ORM\EntityManager;
-use FOS\RestBundle\Form\Transformer\EntityToIdObjectTransformer;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class TravelInfoType extends AbstractType
 {
-    private $em;
-
-    public function __construct(EntityManager $em)
-    {
-        $this->em = $em;
-    }
-
     /**
      * @param FormBuilderInterface $builder
      * @param array $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $clientTrans = new EntityToIdObjectTransformer($this->em, 'ProjectApiBundle:Client');
-        $staffTrans = new EntityToIdObjectTransformer($this->em, 'ProjectApiBundle:Staff');
-
-        $builder->add('travelType', CheckboxType::class, ['required' => true])
-            ->add($builder->create('client', 'text')->addModelTransformer($clientTrans))
-            ->add($builder->create('staff', 'text')->addModelTransformer($staffTrans))
-            ->getForm();
+        $builder
+            ->add('travelType', ChoiceType::class,[
+                'required' => true,
+                'choices' => [
+                    'with client' => 'with client',
+                    'between client' => 'between client'
+                ]
+            ])
+            ->add('kmStart', NumberType::class)
+            ->add('kmEnd', NumberType::class)
+        ->getForm();
     }
 
     /**
@@ -52,7 +48,4 @@ class TravelInfoType extends AbstractType
     {
         return 'travelInfo_type';
     }
-
-
-
 }
