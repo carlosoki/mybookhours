@@ -63,21 +63,25 @@ class TravelInfo
 
     /**
      * @ORM\Column(name="total_travelled", type="float", nullable=true)
+     * @Serializer\Groups({"appointment"})
      */
     private $totalTravelled;
 
     /**
      * @ORM\Column(name="departure", type="string", nullable=true)
+     * @Serializer\Groups({"appointment"})
      */
     private $departure;
 
     /**
      * @ORM\Column(name="destination", type="string", nullable=true)
+     * @Serializer\Groups({"appointment"})
      */
     private $destination;
 
     /**
      * @ORM\Column(name="purpose", type="text", nullable=true)
+     * @Serializer\Groups({"appointment"})
      */
     private $purpose;
 

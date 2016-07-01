@@ -5,6 +5,8 @@ namespace Project\Bundle\Api\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -26,11 +28,16 @@ class TravelInfoType extends AbstractType
             ])
             ->add('kmStart', NumberType::class)
             ->add('kmEnd', NumberType::class)
+            ->add('totalTravelled', NumberType::class)
+            ->add('departure', TextType::class)
+            ->add('destination', TextType::class)
+            ->add('purpose', TextareaType::class)
         ->getForm();
     }
 
     /**
      * @param OptionsResolver $resolver
+     * @throws \Symfony\Component\OptionsResolver\Exception\AccessException
      */
     public function configureOptions(OptionsResolver $resolver)
     {

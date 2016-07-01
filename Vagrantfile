@@ -9,6 +9,9 @@ Vagrant.configure(2) do |config|
   config.vm.provider "virtualbox" do |v|
     host = RbConfig::CONFIG['host_os']
 
+    # Change VirtualBox box name
+    v.name = "mybookhours-php7-sf28"
+
     if host =~ /darwin/
       cpus = `sysctl -n hw.ncpu`.to_i
 

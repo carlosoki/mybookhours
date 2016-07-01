@@ -56,18 +56,25 @@ echo "$SECURE_MYSQL"
 
 add-apt-repository -y ppa:ondrej/php
 apt-get update
-# Install PH
-apt-get -y install php7.0 php7.0-xml php7.0-mbstring libapache2-mod-php7.0 php7.0-curl php7.0-gd php7.0-json php7.0-dev
+
+# Install PHP
+apt-get -y install php7.0 php7.0-xml php7.0-mbstring libapache2-mod-php7.0 php7.0-curl php7.0-gd php7.0-json php7.0-dev php7.0-fpm
 apt-get -y install php7.0-mysql
 
 # set php timezone
 sed -i "/date.timezone =/ c\date.timezone = \"$2\"" /etc/php/7.0/cli/php.ini /etc/php/7.0/apache2/php.ini
 service apache2 restart
 
+a2enmod proxy_fcgi setenvif
+a2enconf php5.6-fpm
+
+service apache2 restart
+
 # composer
 curl -sS https://getcomposer.org/installer | php
 mv composer.phar /usr/local/bin/composer
 
-cd "$3/symfony"
-
-#./refresh.sh
+# install node
+curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+apt-get install -y nodejs
+apt-get install -y build-essential
